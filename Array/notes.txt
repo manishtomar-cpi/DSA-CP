@@ -41,3 +41,6 @@ for (auto &i : arr1): Reference loop used for arrays without initialization.
 
 Size of array:
 sizeof(arr3) gives the total size of the array in memory (in bytes).
+
+
+//maximum size of an array is 10^5 (10 power 5)

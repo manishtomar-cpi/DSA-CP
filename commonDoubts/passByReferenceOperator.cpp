@@ -64,36 +64,103 @@
 // }
 
 
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+
+// void printElement(const vector<int>&vec){ //here wqe passed by reference with const , means we canbt chnage thye value and no copy will made of the orignal vector 
+//     cout << "{ ";
+//     for(auto i : vec){
+//         cout << i << " ";
+//     }
+//     cout << "}" << endl;
+// }
+
+// void func(int &a){
+// a+=10;
+// }
+
+// void doubleElements(vector<int> &vec) { // no copy make 
+//     // for (int num : vec) { // if we not take int &num means we are changing in the function
+//     for (int &num : vec) { //now chnage the acctual value
+
+//         num *= 2;  // Double each element
+//     }
+// }
+
+// int main (){
+//     int a =15;
+//     func(a);
+//     cout << a << endl; //25 chnage the orignal value because we send by reference 
+//     vector<int> vec = {1,2,3,4};
+
+//     doubleElements(vec);
+//     printElement(vec);
+// }
+
+// #include<iostream>
+// #include<vector>
+// #include<string>
+// using namespace std;
+
+// string func(string s) {
+//     int i = 0;
+//     int result = 0;
+//     while (i < s.size()-1) {
+//         result = s.at(i + 1) - 48;
+//         for (int j = 0; j < result; j++) {
+//             cout << s.at(i);
+//         }
+//         i += 2;
+//     }
+//     return "";
+// }
+
+// int main() {
+//     cout << func("a2a1c4b1d7o9a2") << endl;
+//     return 0;
+// }
+
+
 #include<iostream>
+#include<algorithm>
 #include<vector>
 using namespace std;
 
-void printElement(const vector<int>&vec){ //here wqe passed by reference with const , means we canbt chnage thye value and no copy will made of the orignal vector 
-    cout << "{ ";
-    for(auto i : vec){
-        cout << i << " ";
-    }
-    cout << "}" << endl;
+int findunique(vector<int>vec) {
+
+	sort(vec.begin(), vec.end());
+
+	int i = 0;
+	int count = 1;
+	
+	while (i < vec.size()) {
+		if (i < vec.size() - 1) {
+			if (vec.at(i) == vec.at(i + 1)) {
+				count++;
+				i++;
+			}
+
+			if (count == 1) {
+				return vec.at(i);
+				break;
+			}
+
+			else if (vec.at(i) != vec.at(i + 1)) {
+				count = 1;
+				i = i + 1;
+			}
+		}
+		if (i == vec.size() - 1) {
+			return vec.at(i);
+			break;
+		}
+	}
 }
 
-void func(int &a){
-a+=10;
-}
+int main() {
+	vector<int> vec{ 2,3,4,3,4,2,5,0,9};
 
-void doubleElements(vector<int> &vec) { // no copy make 
-    // for (int num : vec) { // if we not take int &num means we are changing in the function
-    for (int &num : vec) { //now chnage the acctual value
-
-        num *= 2;  // Double each element
-    }
-}
-
-int main (){
-    int a =15;
-    func(a);
-    cout << a << endl; //25 chnage the orignal value because we send by reference 
-    vector<int> vec = {1,2,3,4};
-
-    doubleElements(vec);
-    printElement(vec);
+	cout << findunique(vec) << endl;
+	return 0;
 }

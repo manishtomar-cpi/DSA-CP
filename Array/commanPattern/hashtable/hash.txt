@@ -1,0 +1,10 @@
+    unordered_map<int, int> hash;
+    for (int i = 0; i < nums.size(); i++)
+    {
+        hash[nums[i]]++;
+        if (hash[nums[i]] > 1)
+        {
+            return true; // Duplicate found
+        }
+    }
+    // here nums[i] is the key in map and the apprearence is the value

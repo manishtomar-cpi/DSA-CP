@@ -1,0 +1,19 @@
+    // SLIDER/TWO POINTERS
+    //  int i =0;
+    //  int j = i+1;
+    //  if (nums.size()==0){
+    //      return false;
+    //  }
+    //  while(i< nums.size()-1){
+    //  if(nums.at(i)==nums.at(j)){
+    //      return true;
+    //  } else if (nums.at(i)!= nums.at(j)){
+    //      if(j == nums.size()-1){
+    //          i++;
+    //          j= i+1;
+    //          continue;
+    //      }
+
+    // }
+    // j++;
+    // }

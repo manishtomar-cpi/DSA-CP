@@ -1,0 +1,162 @@
+// 1. Character Array (`char name[100]`)
+//    - The array `name` is declared with a size of 100 characters, meaning it can store a string of up to 99 characters plus the null terminator (`'\0'`) which indicates the end of a C-style string.
+//    - In C++, character arrays can be used to store strings, but they don't have the built-in safeguards or features of `std::string` (e.g., automatic memory management).
+
+// 2. User Input (`cin >> name`)
+//    - The `cin` command reads a string from the user and stores it in the `name` array.
+//    - `cin` stops reading when it encounters whitespace, so only one word will be read.
+   
+// 3. Output Initial Name
+//    - The first `cout` prints the name the user entered.
+//    - At this point, the array stores the entered name followed by the null terminator (`'\0'`), ensuring proper string handling.
+
+// 4. Manipulating Characters Beyond the String's Length
+//    - `name[7] = 't';`: This line attempts to assign the value `'t'` to the 8th position of the array (index 7). If the user's name is shorter than 7 characters, this may modify an unintended memory location or a null terminator, causing unpredictable behavior when the string is printed.
+//      - For example, if the name is "manish", which ends at index 6 (`'\0'`), setting `name[7]` introduces undefined behavior because you’re modifying beyond the string’s natural boundary.
+//    - The second `cout` prints this modified array, but depending on the original input, the result might be incorrect or cause undefined behavior.
+
+// 5. Modifying the Null Terminator (`name[6] = 'o';`)
+//    - `name[6] = 'o';`: This line replaces the null terminator (`'\0'`) with the character `'o'`.
+//    - Since a C-string is terminated by `'\0'`, modifying this terminator disrupts the string, leading to potentially printing garbage values (characters beyond the original string).
+//    - The final `cout` will now print garbage characters or memory contents past the intended string boundary because the string is no longer terminated correctly.
+
+//Key Takeaways:
+
+// - String Termination in C++: C-style strings (character arrays) rely on the null terminator (`'\0'`) to know where the string ends. If the terminator is overwritten, you may print random memory values (garbage) after the string.
+  
+// - Array Bounds: Be cautious when manipulating specific elements of the array beyond the actual length of the string entered by the user. Going past the bounds of the array or the string leads to undefined behavior.
+
+// - Better String Handling: While character arrays work, it's generally better to use `std::string` in C++ for safer string manipulation, as it automatically manages the string's size and handles input/output more flexibly without risking memory issues.
+
+getline
+This code provides a demonstration of handling input, particularly how to deal with spaces and custom delimiters in user input using cin.getline(). Here’s a breakdown of the important concepts and how the code works:
+
+// Key Concepts and Code Breakdown:
+// Character Array Input (cin >> input)
+
+// Initially, the code commented out the basic cin >> input method, which reads input until it encounters whitespace. This approach does not handle spaces within input well, as it will only read the first word.
+// For example, if the user enters "ma n", only "ma" would be stored, and the rest is ignored.
+// Using cin.getline() for Input with Spaces
+
+// The problem of reading input with spaces can be resolved by using the cin.getline() function.
+// Syntax:
+
+// cin.getline(array_name, max_length);
+// This function reads a line of text, including spaces, and stores it in the array. It stops reading when the line is terminated by a newline (\n) or when the maximum length specified (99 in this case) is reached.
+// In the code:
+
+// char arr[100];
+// cout << "enter anything with space: " << endl;
+// cin.getline(arr, 100);  // Reads up to 99 characters plus the null terminator '\0'
+// Explanation:
+// It allows you to enter a string that contains spaces, such as "hello world", and it will correctly store and print the entire input.
+// The cin.getline(arr, 100) function will reserve 99 characters for the input, leaving one space for the null terminator ('\0'), which is automatically added at the end of the string.
+// Using cin.getline() with a Delimiter
+
+// cin.getline() also has an overloaded version that accepts a third parameter, a delimiter character. Input will be read until this delimiter is encountered.
+// Syntax:
+
+// cin.getline(array_name, max_length, delimiter);
+// In the code:
+
+// cin.getline(char_arr, 10, 'o');
+// Explanation:
+// This line will read input until the character 'o' is encountered. For instance, if the user enters "hello world", it will only store "hell" (because it stops reading before the first occurrence of 'o').
+// The delimiter 'o' essentially acts as a custom termination character.
+// Example Output:
+
+// If the user inputs "hello world" when prompted for the second input:
+
+// cin.getline(char_arr, 10, 'o');
+// The program will stop reading at 'o', so char_arr will contain "hell", and this will be printed to the console.
+// Key Takeaways:
+// Handling Spaces in Input:
+
+// cin >> doesn’t handle spaces well, so use cin.getline() to read a full line of input with spaces. This is essential when working with multiple-word strings or inputs where spaces are needed.
+// Custom Delimiters:
+
+// You can use cin.getline() with a custom delimiter to stop reading input based on a specific character. This is useful in cases where you want to process partial input up to a certain point, such as stopping at a specific character (like 'o' in the example).
+// Input Length Control:
+
+// The second parameter in cin.getline() ensures that the input does not exceed the array's capacity, preventing buffer overflow issues. Always leave space for the null terminator ('\0'), which is automatically added to the string.
+// This code demonstrates how to effectively manage and manipulate user input, especially when dealing with spaces or when you need custom termination for input strings.
+
+
+C String Functions
+
+To use these functions, include the `cstring` header file in your C++ program.
+
+ 1. `strlen`
+- Purpose: Calculates the length of a C-style string (number of characters before the null terminator).
+- Syntax: `size_t strlen(const char* str);`
+- Example:
+  #include <cstring>
+  const char* name = "Hello";
+  size_t length = strlen(name);  // length will be 5
+ 
+
+ 2. `strcmp`
+- Purpose: Compares two C-style strings.
+- Syntax: `int strcmp(const char* str1, const char* str2);`
+- How it Works:
+  - Compares characters in both strings one by one.
+  - Returns:
+    - 0 if both strings are equal.
+    - A negative value if `str1` is less than `str2`.
+    - A positive value if `str1` is greater than `str2`.
+- Example:
+  #include <cstring>
+  const char* str1 = "apple";
+  const char* str2 = "banana";
+  int result = strcmp(str1, str2);  // result is negative because "apple" < "banana"
+ 
+
+ 3. `strcpy`
+- Purpose: Copies one C-style string to another.
+- Syntax: `char* strcpy(char* dest, const char* src);`
+- What it Does: Copies the entire `src` string, including the null terminator, into `dest`.
+- Example:
+  #include <cstring>
+  char source[] = "Hello";
+  char destination[10];  // Make sure it's large enough
+  strcpy(destination, source);  // destination now holds "Hello"
+ 
+
+ 4. `strncpy`
+- Purpose: Copies a specified number of characters from one string to another.
+- Syntax: `char* strncpy(char* dest, const char* src, size_t n);`
+- Key Difference from `strcpy`:
+  - Does not guarantee null termination if `n` is less than the length of `src`.
+  - If `src` has fewer characters than `n`, fills the remaining characters in `dest` with nulls.
+- Example:
+
+  #include <cstring>
+  char source[] = "Hello";
+  char destination[10];
+  strncpy(destination, source, 3);  // destination now holds "Hel"
+  destination[3] = '\0';  // Manually add null terminator if needed
+ 
+
+
+5. `strcat`
+- Purpose: Concatenates (appends) one string to another.
+- Syntax: `char* strcat(char* dest, const char* src);`
+- What it Does: Adds the `src` string to the end of `dest`, overwriting the null terminator of `dest`.
+- Example:
+ cpp
+  #include <cstring>
+  char destination[20] = "Hello";
+  const char* source = " World";
+  strcat(destination, source);  // destination now holds "Hello World"
+ 
+
+---
+
+ Summary
+- `strlen`: Get the length of a string.
+- `strcmp`: Compare two strings for equality or order.
+- `strcpy`: Copy one string to another (includes null terminator).
+- `strncpy`: Copy a specified number of characters from one string to another (may not include null).
+- `strcat`: Append one string to another.
+
+These functions are essential for handling C-style strings in C++ programming. Always ensure your destination arrays are large enough to hold the strings you are working with to avoid buffer overflows.
