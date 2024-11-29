@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 using namespace std;
-
+//!not correct solution
 bool isSubsequence(string s, string t)
 {
     vector<int> checker;
