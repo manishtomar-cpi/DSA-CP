@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/manish.tomar/Desktop/my work/DSA-CP/neetcode/array",
-      "program": "c:/Users/manish.tomar/Desktop/my work/DSA-CP/neetcode/array/build/Debug/outDebug.exe",
+      "cwd": "c:/Users/manis/Desktop/DSA-CP/Array/Char-Array/problems",
+      "program": "c:/Users/manis/Desktop/DSA-CP/Array/Char-Array/problems/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
