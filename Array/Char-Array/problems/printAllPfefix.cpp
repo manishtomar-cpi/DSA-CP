@@ -8,7 +8,7 @@ void printPrifix(string s)
     // BF
     //  for (int i = 0; i < s.size(); i++)
     //  {
-    //      for (int j = 0; j < i+1; j++)
+    //      for (int j = 0; j <=i; j++)
     //      {
     //          cout << s.at(j);
     //      }
