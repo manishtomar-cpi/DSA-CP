@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "${workspaceFolder}",
-      "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+      "cwd": "c:/Users/manis/Desktop/DSA-CP/neetcode/array",
+      "program": "c:/Users/manis/Desktop/DSA-CP/neetcode/array/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
