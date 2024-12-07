@@ -1,6 +1,16 @@
 #include <iostream>
 using namespace std;
 
+
+void pass2dArrayAsFunction(int ar[][10], int row, int col) {//*giving col when passing the 2d array as a parameter is mandatory
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            cout << ar[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
 void intro_to_2d_array()
 {
     // syntax
@@ -51,8 +61,12 @@ void initOf2dArray()
         {
             cout << ar[i][j] << "";
         }
-        cout << endl;
+        cout << endl;  
     }
+
+    int arrr[10][10] = {{0}}; //init 2d array with all value 0;
+
+    pass2dArrayAsFunction(arrr,10,10);
 }
 
 int main()

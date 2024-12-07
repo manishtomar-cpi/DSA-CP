@@ -156,7 +156,7 @@ vector<int> intrsectionBySort(vector<int> nums1, vector<int> nums2)
         }
         if (nums2.at(i) != i + 1)
         {
-            nums2.insert(nums2.begin() + i, 0); // now inserted at specific possition , below is removing the existing value with 0;
+            nums2.insert(nums2.begin() + i, 0); // now inserted at specific position , below is removing the existing value with 0;
             // nums2.at(i)=0;
             // nums.at(i+1)
             // cout << nums2.size();

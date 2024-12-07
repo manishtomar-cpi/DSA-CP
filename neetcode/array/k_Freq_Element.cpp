@@ -27,7 +27,9 @@ vector<int> func(vector<int> &nums, int k)
         keys.push_back(i.first);
         values.push_back(i.second);
     }
+    cout << "keys" << endl;
     display(keys);
+    cout << "values" << endl;
     display(values);
     nums.clear();
     // int gr, pos =0;
@@ -49,39 +51,39 @@ vector<int> func(vector<int> &nums, int k)
     // }
 
     //! o(N)
-    int i = 0;
-    int position = 0;
-    int gr = values[0];
-    int j = 0;
-    while (i < values.size())
-    {
-
-        if (j < values.size())
-        {
-            if (values[j] > gr)
-            {
-                gr = values[j];
-                position = j;
+    int i =0;
+    int j =0;
+    int pos =0;
+    int gr =values.at(j);
+    while(i<values.size()){
+        if(j< values.size()){
+            if(values.at(j)>gr){
+                gr = values.at(j);
+                pos = j;
             }
+
         }
-        if (j == values.size() - 1)
-        {
-            nums.push_back(keys[position]);
-            values[i] = -1;
-            i++;
+        if(j == values.size()-1){
+            nums.push_back(keys.at(pos));
+            if(nums.size()>=k){
+                break;
+            }
+            values.at(pos)=-1;
             j=0;
-            position=j;
-            gr =0;
+            i++;
+            pos=j;
+            gr= values.at(pos);
             continue;
         }
         j++;
     }
+    cout << "final" << endl;
     display(nums);
 }
 
 int main()
 {
-    vector<int> vec = {1, 1, 1, 2, 2, 3};
+    vector<int> vec = {1,1,1,2,2,3};
     int k = 2;
     func(vec, k);
 
