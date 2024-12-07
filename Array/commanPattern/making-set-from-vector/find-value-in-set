@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <algorithm>
+#include <unordered_set>
+using namespace std;
+
+vector<vector<int>> func(vector<int> &nums1, vector<int> &nums2)
+{
+    unordered_set<int> set1(nums1.begin(), nums1.end());
+    unordered_set<int> set2(nums2.begin(), nums2.end());
+    nums1.clear();
+    nums2.clear();
+
+    for (int num : set1)
+    {
+        if (set2.find(num) == set2.end()) // values in set1 which is not in set2
+        {
+            nums1.push_back(num);
+        }
+    }
+}
