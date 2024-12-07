@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/manis/Desktop/DSA-CP/Array/2D-Array",
-      "program": "c:/Users/manis/Desktop/DSA-CP/Array/2D-Array/build/Debug/outDebug",
+      "cwd": "${workspaceFolder}",
+      "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

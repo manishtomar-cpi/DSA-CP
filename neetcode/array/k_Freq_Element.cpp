@@ -30,32 +30,58 @@ vector<int> func(vector<int> &nums, int k)
     display(keys);
     display(values);
     nums.clear();
+    // int gr, pos =0;
+    // for(int i = 0; i < values.size(); i++){
+    //     gr = values.at(i);
+    //     pos=i;
+    //     for(int j = 0; j< values.size();j++){
 
-  
-int gr, pos =0;
-for(int i = 0; i < values.size(); i++){
-    gr = values.at(i);
-    pos=i;
-    for(int j = 0; j< values.size();j++){
+    //         if(values.at(j)>gr){
+    //             gr = values.at(j);
+    //             pos=j;
+    //         }
+    //     }
+    //     nums.push_back(keys.at(pos));
+    //     if(nums.size()>=k){
+    //         break;
+    //     }
+    //     values.at(pos)=-100;
+    // }
 
-        if(values.at(j)>gr){
-            gr = values.at(j);
-            pos=j;
+    //! o(N)
+    int i = 0;
+    int position = 0;
+    int gr = values[0];
+    int j = 0;
+    while (i < values.size())
+    {
+
+        if (j < values.size())
+        {
+            if (values[j] > gr)
+            {
+                gr = values[j];
+                position = j;
+            }
         }
+        if (j == values.size() - 1)
+        {
+            nums.push_back(keys[position]);
+            values[i] = -1;
+            i++;
+            j=0;
+            position=j;
+            gr =0;
+            continue;
+        }
+        j++;
     }
-    nums.push_back(keys.at(pos));
-    if(nums.size()>=k){
-        break;
-    }
-    values.at(pos)=-100;
-}
-display(nums);
- 
+    display(nums);
 }
 
 int main()
 {
-    vector<int> vec = {1,1,1,2,3,3,-100, -100, -100};
+    vector<int> vec = {1, 1, 1, 2, 2, 3};
     int k = 2;
     func(vec, k);
 
