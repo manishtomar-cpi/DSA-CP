@@ -15,22 +15,17 @@ void display(vector<int> &vec)
 void selectionSort(vector<int> &vec)
 {
     int smallest;
-    int pos = 0;
     for (int i = 0; i < vec.size(); i++)
     {
-        smallest = vec[i];
-        pos=0;
+        smallest = i; //*index of the smallest one, assume first one in the list is smallest
         for (int j = i; j < vec.size(); j++)
         {
-            if (vec[j] < smallest)// if want to sort in des order change < to >
+            if (vec[j] < vec[smallest])// if want to sort in des order change < to >
             {
-                smallest = vec[j];
-                pos = j;
+                smallest = j; //?update the index of the smallest one
             }
         }
-        if(smallest<vec[i]){
-        swap(vec[i], vec[pos]);
-        }
+        swap(vec[i], vec[smallest]); //swap current with smallest - //!if no smallest found current swap with current 
         display(vec);
     }
 }
