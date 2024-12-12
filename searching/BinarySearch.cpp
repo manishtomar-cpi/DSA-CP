@@ -44,17 +44,17 @@ int binarySearch(vector<int> &vec, int key)
 
     while (start <= end)
     {
-        if (vec[mid] == key)
+        if (vec[mid] == key) //find key
         {
             return mid;
             break;
         }
-        if (vec[mid] > key)
+        if (vec[mid] > key) //means key is on left hand side
         {
             end = mid - 1;
             mid = (start + end) / 2;
         }
-        if (vec[mid] < key)
+        else if (vec[mid] < key)// means key is on right hand side
         {
             start = mid + 1;
             mid = (start + end) / 2;
@@ -68,7 +68,7 @@ int main()
     vector<int> vec{1, 2, 3, 4, 5,0,9,7,12,10};
 
     sorting(vec);
-    cout << binarySearch(vec, 7) << endl;
+    cout << binarySearch(vec, 11) << endl;
 
     return 0;
 }
