@@ -6,9 +6,9 @@ Recursion is a programming technique where a function calls itself to solve smal
 
 ## Key Concepts of Recursion
 
-1. **<span style="color:blue">Base Case</span>**: The condition that stops the recursion. Without it, the function will continue indefinitely. 
-2. **<span style="color:green">Recursive Case</span>**: The function calls itself with a smaller or simpler input. 
-3. **<span style="color:orange">Depth-First Execution</span>**: Recursion works in a "depth-first" manner, solving one branch completely before moving to the next.
+1. **Base Case**: The condition that stops the recursion. Without it, the function will continue indefinitely. 
+2. **Recursive Case**: The function calls itself with a smaller or simpler input. 
+3. **Depth-First Execution**: Recursion works in a "depth-first" manner, solving one branch completely before moving to the next.
 
 ---
 
@@ -39,8 +39,8 @@ int main()
 
 ### Explanation
 
-1. **<span style="color:blue">Base Case</span>**: If `n <= 0`, the recursion stops because the condition `n > 0` fails.
-2. **<span style="color:green">Recursive Case</span>**: If `n > 0`, the function prints the current value of `n` and calls itself with `n - 1`.
+1. **Base Case**: If `n <= 0`, the recursion stops because the condition `n > 0` fails.
+2. **Recursive Case**: If `n > 0`, the function prints the current value of `n` and calls itself with `n - 1`.
 
 #### Execution Steps
 - First Call: `fun1(3)` prints `3` and calls `fun1(2)`.
@@ -50,14 +50,14 @@ int main()
 
 #### Recursion Tree Representation
 
-```plaintext
-          fun1(3) <span style="color:green">[Recursive Case]</span>
+```
+          fun1(3)
           /    \
- <span style="color:red">Print 3</span>    fun1(2) <span style="color:green">[Recursive Case]</span>
+         3    fun1(2)
                /    \
-     <span style="color:red">Print 2</span>    fun1(1) <span style="color:green">[Recursive Case]</span>
+              2    fun1(1)
                     /    \
-           <span style="color:red">Print 1</span>    fun1(0) <span style="color:blue">[Base Case]</span> -> stops
+                   1    fun1(0) -> stops
 ```
 
 #### Output
@@ -95,8 +95,8 @@ int main()
 
 ### Explanation
 
-1. **<span style="color:blue">Base Case</span>**: If `n <= 0`, the recursion stops because the condition `n > 0` fails.
-2. **<span style="color:green">Recursive Case</span>**: If `n > 0`, the function calls itself with `n - 1`. After returning from the recursive call, it prints the value of `n`.
+1. **Base Case**: If `n <= 0`, the recursion stops because the condition `n > 0` fails.
+2. **Recursive Case**: If `n > 0`, the function calls itself with `n - 1`. After returning from the recursive call, it prints the value of `n`.
 
 #### Execution Steps
 
@@ -109,14 +109,14 @@ int main()
 
 #### Partial Tree for Recursive Calls
 
-```plaintext
-          fun2(3) <span style="color:green">[Recursive Case]</span>
+```
+          fun2(3)
           /    \
-     fun2(2) <span style="color:green">[Recursive Case]</span>   (print later)
+     fun2(2)   (print later)
         /    \
-   fun2(1) <span style="color:green">[Recursive Case]</span>   (print later)
+   fun2(1)   (print later)
       /    \
- fun2(0) <span style="color:blue">[Base Case]</span>   (print later)
+ fun2(0)   (print later)
 ```
 
 At this point, all recursive calls have been made, and the function starts returning.
@@ -124,27 +124,27 @@ At this point, all recursive calls have been made, and the function starts retur
 ### Step 2: Printing During Return Phase
 
 - As the calls return:
-  - `fun2(1)` prints **<span style="color:red">1</span>**.
-  - `fun2(2)` prints **<span style="color:red">2</span>**.
-  - `fun2(3)` prints **<span style="color:red">3</span>**.
+  - `fun2(1)` prints `1`.
+  - `fun2(2)` prints `2`.
+  - `fun2(3)` prints `3`.
 
 #### Full Tree with Print Execution
 
-```plaintext
-          fun2(3) <span style="color:green">[Recursive Case]</span>
+```
+          fun2(3)
           /    \
-     fun2(2) <span style="color:red">Print 3</span>
+     fun2(2)   3 <- Executes after returning from fun2(2)
         /    \
-   fun2(1) <span style="color:red">Print 2</span>
+   fun2(1)   2 <- Executes after returning from fun2(1)
       /    \
- fun2(0) <span style="color:red">Print 1</span>
+ fun2(0)   1 <- Executes after returning from fun2(0)
 ```
 
 #### Execution Flow
 
 - Starts with `fun2(3)`.
 - Goes down to `fun2(0)` (base case).
-- Then goes back up, executing the print statements in reverse order: **<span style="color:red">1</span>**, **<span style="color:red">2</span>**, **<span style="color:red">3</span>**.
+- Then goes back up, executing the print statements in reverse order: `1`, `2`, `3`.
 
 #### Output
 
@@ -169,3 +169,4 @@ At this point, all recursive calls have been made, and the function starts retur
 1. The position of the print statement (before or after the recursive call) determines whether recursion works in a "top-down" or "bottom-up" manner.
 2. In `fun1`, values are printed before making the recursive call, resulting in output from `n` to `1`.
 3. In `fun2`, values are printed after returning from the recursive call, resulting in output from `1` to `n`.
+
