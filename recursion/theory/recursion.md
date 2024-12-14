@@ -170,3 +170,129 @@ At this point, all recursive calls have been made, and the function starts retur
 2. In `fun1`, values are printed before making the recursive call, resulting in output from `n` to `1`.
 3. In `fun2`, values are printed after returning from the recursive call, resulting in output from `1` to `n`.
 
+
+## Recursion Explained with Room and Bulb Example
+
+This example uses rooms and bulbs to explain the **calling phase** and **returning phase** of recursion. Imagine a person tasked with switching on bulbs in rooms sequentially, one at a time. Each room represents a recursive function call.
+
+### Scenario 1: **Switch On Bulb First**
+
+Steps:
+1. Switch on the bulb in the current room.
+2. Move to the next room (recursive call).
+
+### Calling Phase:
+- The person enters **Room 1**, switches on the bulb, and moves to **Room 2**.
+- In **Room 2**, the person switches on the bulb and moves to **Room 3**.
+- In **Room 3**, the person switches on the bulb and attempts to move to the next room, but there are no more rooms (base case).
+
+### Returning Phase:
+- No specific action happens during the returning phase because the bulbs were switched on during the calling phase.
+
+#### Visual Representation:
+
+**Calling Phase**:
+
+```
+  [Room 1] --> Switch On Bulb --> Move to Room 2
+  [Room 2] --> Switch On Bulb --> Move to Room 3
+  [Room 3] --> Switch On Bulb --> End (Base Case)
+```
+
+**Room Visualization (Calling Phase)**:
+
+```
++------+     +------+     +------+     
+| Bulb | --> | Bulb | --> | Bulb |     
+|  ON  |     |  ON  |     |  ON  |     
++------+     +------+     +------+     
+```
+
+**Returning Phase**:
+
+- Nothing to do as bulbs are already switched on.
+
+#### Output:
+```
+1 2 3
+```
+
+---
+
+### Scenario 2: **Move First, Then Switch On Bulb**
+
+Steps:
+1. Move to the next room (recursive call).
+2. Switch on the bulb in the current room.
+
+### Calling Phase:
+- The person enters **Room 1** and moves to **Room 2**.
+- In **Room 2**, the person moves to **Room 3**.
+- In **Room 3**, the person attempts to move to the next room, but there are no more rooms (base case).
+
+**Room Visualization (Calling Phase)**:
+
+```
++------+     +------+     +------+     
+| Bulb |     | Bulb |     | Bulb |     
+| OFF  | --> | OFF  | --> | OFF  |     
++------+     +------+     +------+     
+```
+
+### Returning Phase:
+- The person switches on the bulb in **Room 3**, then **Room 2**, and finally **Room 1** as they return.
+
+**Room Visualization (Returning Phase)**:
+
+```
++------+     +------+     +------+     
+| Bulb |     | Bulb |     | Bulb |     
+|  ON  | <-- |  ON  | <-- |  ON  |     
++------+     +------+     +------+     
+```
+
+#### Visual Representation:
+
+**Calling Phase**:
+
+```
+  [Room 1] --> Move to Room 2
+  [Room 2] --> Move to Room 3
+  [Room 3] --> End (Base Case)
+```
+
+**Returning Phase**:
+
+```
+  [Room 3] --> Switch On Bulb
+  [Room 2] --> Switch On Bulb
+  [Room 1] --> Switch On Bulb
+```
+
+#### Output:
+```
+3 2 1
+```
+
+---
+
+### Explanation of Phases
+
+1. **Calling Phase**:
+   - This is the phase where recursive function calls are made.
+   - The person moves from one room to the next, preparing for an action to be performed later.
+
+2. **Returning Phase**:
+   - This is the phase where the recursion starts to "unwind."
+   - Actions like switching on the bulbs in Scenario 2 are performed as the person returns from the last room back to the first room.
+
+---
+
+### Key Insights from the Room and Bulb Example
+
+1. The order of operations in recursion determines the output:
+   - **Scenario 1** switches on bulbs in the calling phase (output: `1 2 3`).
+   - **Scenario 2** switches on bulbs in the returning phase (output: `3 2 1`).
+
+2. The base case is represented by the point where the person cannot move to another room (end of recursion).
+
