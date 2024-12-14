@@ -37,11 +37,13 @@ void sorting(vector<int> &vec)
 
 int binarySearch(vector<int> &vec, int key)
 {
-    // when we added 2 very big integer they might cross the limit of the INT_MAX and when we add start + end then we might have the chance to get the negative result because of integer overflow, INT_MAX is (2pow31 -1), then we should use mid = start + ((end-start)/2)
 
     int start = 0;
     int end = vec.size() - 1;
-    int mid = start + ((end-start)/2);
+    // int mid = (start+end)/2;
+    // when we added 2 very big integer they might cross the limit of the INT_MAX and when we add start + end then we might have the chance to get the negative result because of integer overflow, INT_MAX is (2pow31 -1), then we should use mid = start + ((end-start)/2)
+
+    int mid = start + ((end - start) / 2);
 
     while (start <= end)
     {
@@ -53,12 +55,12 @@ int binarySearch(vector<int> &vec, int key)
         if (vec[mid] > key) // means key is on left hand side
         {
             end = mid - 1;
-            mid = start + ((end-start)/2);
+            mid = start + ((end - start) / 2);
         }
         else if (vec[mid] < key) // means key is on right hand side
         {
             start = mid + 1;
-            mid = start + ((end-start)/2);
+            mid = start + ((end - start) / 2);
         }
     }
     return -1;
