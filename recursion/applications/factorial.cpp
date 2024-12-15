@@ -3,12 +3,24 @@ using namespace std;
 
 int fact(int n)
 {
-    if (n == 0)
-    {
-        return 1; // base case
-    }
-    return fact(n - 1)  * n ;
+  if (n < 0)
+  {
+    return -1;
+  }
+  if (n == 0)
+  {
+    return 1; // base case
+  }
+  return fact(n - 1) * n;
 }
+
+// int fact(int n){
+//   if(n==0){
+//     return 1;
+//   }
+//   int small = fact(n-1);
+//   return n*small;
+// }
 /*
 Calling Phase:
 
@@ -41,9 +53,9 @@ Returning Phase:
 
 int main()
 {
-    int x = 3;
+  int x = 3;
 
-    cout << fact(x) << endl;
+  cout << fact(x) << endl;
 
-    return 0;
+  return 0;
 }
