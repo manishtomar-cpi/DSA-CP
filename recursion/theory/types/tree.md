@@ -144,7 +144,7 @@ As each branch completes, the corresponding function is popped off the stack.
 ## Output for `fun(3)`:
 
 ```
-1 1 2 1 1 3 1 1 2 1 1
+1 2 1 3 1 2 1
 ```
 
 ---
