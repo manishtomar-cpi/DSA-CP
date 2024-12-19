@@ -7,8 +7,8 @@ int sumOfDigit(int n)
     {
         return 0;
     }
-    int mod = n % 10; // giving reminder //! but n/10 gives in case of 1234 it will give 123
-    return sumOfDigit(n / 10) + mod;
+    int mod = n % 10; // giving reminder //! but n/10 gives in case of 1234 it will give 4
+    return sumOfDigit(n / 10) + mod; //n/10 gives 123
 }
 
 int main()
