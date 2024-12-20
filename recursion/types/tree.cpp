@@ -13,6 +13,6 @@ void fun(int n)
 
 int main()
 {
-    fun(3);
+    fun(3); //1213121 is the output
     return 0;
 }
