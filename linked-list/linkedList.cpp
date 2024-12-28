@@ -8,7 +8,7 @@ public:
     int data;   // data inside node
     Node *next; // pointer to the next node, i.e it is of Node type
 
-    void displayLL(Node *p) //take the head in the params
+    void displayLL(Node *p) // take the head in the params
     {
         cout << "[ ";
         while (p != nullptr)
@@ -47,7 +47,9 @@ int main()
     head->next = nullptr;
 
     last = head;
-
+    // Crucially, since head and last originally point to the same node, updating last->next also updates head->next because they are referring to the same memory location for the first node.
+    // Both head and last are pointing to the same object (the first node in the linked list).
+    // Any changes made through one pointer (e.g., last->next) will also be reflected when accessed through the other pointer (head->next), because they both point to the same node.
     for (int i = 1; i < sizeof(A) / sizeof(A[0]); i++)
     {
 
