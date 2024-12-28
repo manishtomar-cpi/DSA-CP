@@ -3,7 +3,7 @@
 using namespace std;
 
 //! fib using for loop
-void fib(int n)
+int fib(int n)
 {
 
     int first = 0;
@@ -19,7 +19,7 @@ void fib(int n)
         second = sum;
     }
 
-    cout << sum << endl;
+    return sum;
 }
 
 //! using rec -> this is called excessive rec because it is calling the rec calls many times like f(3) , f(2), f(1), f(0)
@@ -37,31 +37,37 @@ int fib_rec(int n)
     {
         return -1;
     }
-    return fib_rec(n - 1) + fib_rec(n - 2); //!time O(2 pow n);
+    return fib_rec(n - 1) + fib_rec(n - 2); //! time O(2 pow n);
 }
 
-//!O(N) using memoization 
-vector<int>f(10, -1);
-int mFib(int n ){
-if(n<=1){
-    f[n]=n;
-    return n;
-}
-else{
-    if(f[n-1]==-1){
-        f[n-1]= mFib(n-1);
+//! O(N) using memoization
+vector<int> f(10, -1);
+int mFib(int n)
+{
+    if (n <= 1)
+    {
+        f[n] = n;
+        return n;
     }
-    if(f[n-2]==-1){
-        f[n-2]=mFib(n-2);
+    else
+    {
+        if (f[n - 1] == -1)
+        {
+            f[n - 1] = mFib(n - 1);
+        }
+        if (f[n - 2] == -1)
+        {
+            f[n - 2] = mFib(n - 2);
+        }
+        return f[n - 2] + f[n - 1];
     }
-    return f[n-2]+f[n-1];
-}
 }
 int main()
 {
-    // fib(7);
+    cout << fib(40) << endl;
 
-    // cout << fib_rec(4) << endl;
-    cout << mFib(5) << endl;
+    cout << "rec" << endl;
+    // cout << fib_rec(50) << endl;
+    // cout << mFib(5) << endl;
     return 0;
 }
