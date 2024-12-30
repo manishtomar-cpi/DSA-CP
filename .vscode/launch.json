@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/manis/Desktop/DSA-CP/searching/advance-Binary-Search/mooreVotingAlgo",
-      "program": "c:/Users/manis/Desktop/DSA-CP/searching/advance-Binary-Search/mooreVotingAlgo/build/Debug/outDebug",
+      "cwd": "c:/Users/manis/Desktop/DSA-CP/linked-list/operations",
+      "program": "c:/Users/manis/Desktop/DSA-CP/linked-list/operations/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
