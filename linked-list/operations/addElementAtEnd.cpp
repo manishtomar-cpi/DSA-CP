@@ -18,6 +18,17 @@ public:
         cout << "]" << endl;
     }
 
+    void recursiveDisplay(Node *p)
+    {
+        if (p->next == nullptr)
+        {
+            cout << p->data << endl;
+            return;
+        }
+        cout << p->data;
+        recursiveDisplay(p->next);
+    }
+
     void addElement(Node *&last, int data)
     {
         Node *temp = new Node; // Create a new node internally
@@ -51,7 +62,8 @@ int main()
     }
 
     Node n1;
-    n1.display(head);
+    // n1.display(head);
+    n1.recursiveDisplay(head);
     // cout << "checking last..." << endl;
     // cout << last->next << endl;
 
