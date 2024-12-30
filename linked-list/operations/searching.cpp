@@ -29,7 +29,7 @@ public:
         cout << "[ ";
         while (head != nullptr)
         {
-            cout << head->data << " ";
+            cout << head->data << " -> ";
             head = head->next;
         }
         cout << "]" << endl;
@@ -83,5 +83,8 @@ int main()
     // cout << n1.search(head, 18);
     cout << n1.improvedSearch(head, 8) << endl;
     n1.display(head);
+    cout << n1.improvedSearch(head, 10) << endl;
+    n1.display(head);
+
     return 0;
 }
