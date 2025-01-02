@@ -39,7 +39,7 @@ public:
     {
         Node *third = nullptr;
         Node *last = nullptr;
-
+        //STEP 1:- to find the head of the third node by comparing the first data of each list 
         if (firstHead->data < secondHead->data)
         {
             third = firstHead;
@@ -52,6 +52,7 @@ public:
             last = secondHead;
             secondHead = secondHead->next;
         }
+        //STEP 2:- now compering both lists elements and add in the third list 
         while (firstHead != nullptr && secondHead != nullptr)
         {
             if (firstHead->data < secondHead->data)
@@ -67,6 +68,7 @@ public:
                 secondHead = secondHead->next;
             }
         }
+        //STEP 3:- now checking if any one of the list left 
         while (firstHead != nullptr)
         {
             last->next = firstHead;
