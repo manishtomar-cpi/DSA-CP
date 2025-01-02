@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/manis/Desktop/DSA-CP/linked-list/operations",
-      "program": "c:/Users/manis/Desktop/DSA-CP/linked-list/operations/build/Debug/outDebug",
+      "cwd": "c:/Users/manis/Desktop/DSA-CP/linked-list/doubly/operations",
+      "program": "c:/Users/manis/Desktop/DSA-CP/linked-list/doubly/operations/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
