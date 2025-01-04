@@ -51,6 +51,7 @@ public:
         if (top < 0)
         {
             cout << "stack empty!" << endl;
+            return -1;
         }
         else
         {
@@ -93,7 +94,7 @@ int main()
 {
     Stack s1(5); // stack of size 5
     s1.push(10); //[10,_,_,_,_]
-    cout << "the top is: " << s1.peek() << endl;
+    cout << "the top is: " << s1.peek() << endl;//10
     s1.push(20);                                 //[10,20,_,_,_]
     s1.push(30);                                 //[10,20,30,_,_]
     s1.push(40);                                 //[10,20,30,40,_]
@@ -108,6 +109,10 @@ int main()
 
     cout << "value on the index: " << s1.onIndex(1) << endl; // 20
     cout << "value on the index: " << s1.onIndex(3) << endl; //-1 because on 0 -> 10, on 1 -> 20, on 2 ->30, on 3,4, and 5 is _
-
+    s1.pop();                                                //[10,20,_,_,_]
+    s1.pop();                                                //[10,_,_,_,_]
+    cout << "the top is: " << s1.peek() << endl;             // 10
+    s1.pop();                                                //[_,_,_,_,_] -> empty stack
+    s1.pop();                                                // stack underflow: no element on the top
     return 0;
 }
