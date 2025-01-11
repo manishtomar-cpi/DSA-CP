@@ -23,7 +23,7 @@ public:
         }
         else
         {
-            // assuem we are inserting the first element -> rear is 0 1%7 reminder is 1 so on array[1] we are filling new value
+            // assume we are inserting the first element -> rear is 0 1%7 reminder is 1 so on array[1] we are filling new value
             rear = (rear + 1) % capacity;
             helper_array[rear] = val;
         }
