@@ -8,10 +8,10 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/manis/Desktop/DSA-CP/stack/applications/infix-to-postfix",
-      "program": "c:/Users/manis/Desktop/DSA-CP/stack/applications/infix-to-postfix/infixToPostFix.exe",
+      "cwd": "c:/Users/manis/Desktop/DSA-CP/tree/generic-trees/operations",
+      "program": "c:/Users/manis/Desktop/DSA-CP/tree/generic-trees/operations/build/Debug/outDebug",
       "MIMode": "gdb",
-      "miDebuggerPath": "C:/MinGW/bin/gdb.exe", // Update path based on your setup
+      "miDebuggerPath": "gdb",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
