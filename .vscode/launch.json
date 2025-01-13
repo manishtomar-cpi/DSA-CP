@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/manis/Desktop/DSA-CP/tree/generic-trees/operations",
-      "program": "c:/Users/manis/Desktop/DSA-CP/tree/generic-trees/operations/build/Debug/outDebug",
+      "cwd": "c:/Users/manish.tomar/Desktop/my work/DSA-CP/tree/generic-trees/operations",
+      "program": "C:/Users/manish.tomar/Desktop/my work/DSA-CP/tree/generic-trees/operations/nodesAtLevelK.exe",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
