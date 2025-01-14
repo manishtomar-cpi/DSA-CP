@@ -60,6 +60,9 @@
     "*.embeddedhtml": "html",
     "ostream": "cpp",
     "iostream": "cpp",
-    "unordered_map": "cpp"
+    "unordered_map": "cpp",
+    "queue": "cpp",
+    "xutility": "cpp",
+    "vector": "cpp"
   }
 }
