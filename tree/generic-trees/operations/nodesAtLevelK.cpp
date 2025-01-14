@@ -8,6 +8,26 @@ class TreeNode
 private:
     TreeNode *root;
 
+    void printAllNodeAtLevel(TreeNode *root, int k)
+    {
+        if (root == nullptr)
+        {
+            return;
+        }
+        if (k == 0)
+        {
+            /*
+            edge case so here we are taking the root as k and we are going to the depth till k became 0, eg k =3, on root its 3 then its 2,
+            then its 1 then its 0 means we reached on the particular depth
+            */
+            cout << root->data << endl;
+        }
+        for (int i = 0; i < root->childrens.size(); i++)
+        {
+            printAllNodeAtLevel(root->childrens[i], k-1);
+        }
+    }
+
 public:
     int data;
     vector<TreeNode *> childrens;
@@ -104,44 +124,45 @@ public:
     }
     int nodesAtLevel(int k)
     {
-        if (root == nullptr || k > treeHeight())
-        { // if tree is empty or the value of k is greatorn then the total level in the tree
+        if (root == nullptr || k > treeHeight() - 1) //-1 because we are taking node to 0 level
+        {                                            // if tree is empty or the value of k is greatorn then the total level in the tree
 
             return -1;
         }
         else
         {
-            if (k == 1) // on root only 1 node
+            if (k == 0) // on root only 1 node
             {
-                return k;
-            }
-            else if (k == 2) // at level 2 all the childs of the root are present
-            {
-                return root->childrens.size();
+                return 1;
             }
             else
             {
                 int a = 0;
                 queue<TreeNode *> childs;
                 childs.push(root);
-                while (a < k - 1) // why (a<k-1) ? because if we want level 3 we will take only 2 iteration to store all nodes at level 3 into the queue (0 & 1 only)
+                while (a < k) // why (a<k) ? because if we want level 3 we will take only 3 iteration (0,1,2) to store all nodes at level 3 into the queue root level is 0;
                 {
                     int levelSize = childs.size();
                     for (int i = 0; i < levelSize; i++)
-                    {//this loop run on each root of that level
+                    { // this loop run on each root of that level
                         TreeNode *current = childs.front();
 
-                        childs.pop();//after storing in current we are removing the first node in the queue
+                        childs.pop(); // after storing in current we are removing the first node in the queue
                         for (int j = 0; j < current->childrens.size(); j++)
-                        {//this loop store all the chils node at that level
+                        { // this loop store all the chils node at that level
                             childs.push(current->childrens[j]);
                         }
                     }
                     a++;
                 }
-                return childs.size(); //now the queue have the total nodes at the level k 
+                return childs.size(); // now the queue have the total nodes at the level k
             }
         }
+    }
+
+    void getNodesDataAtLevel(int k)
+    {
+        printAllNodeAtLevel(root, k);
     }
 };
 
@@ -152,8 +173,9 @@ int main()
     t1.maketree();
     t1.printTree();
     // cout << "height of the tree is: " << t1.treeHeight() << endl;
-    int k = 4;
+    int k = 3;
     cout << "nodes at level " << k << " is: " << t1.nodesAtLevel(k) << endl;
+    t1.getNodesDataAtLevel(k);
 
     return 0;
 }

@@ -8,6 +8,26 @@ class TreeNode
 private:
     TreeNode *root;
 
+    int getHeight(TreeNode *node)
+    {
+        if (node == nullptr)
+        {
+            return 0; // edge case: empty tree has height 0
+        }
+
+        int maxHeight = 0;
+        for (int i = 0; i < root->childrens.size(); i++)
+        {
+            // int childHeight = getHeight(root->childrens[i]);
+            // if (childHeight > maxHeight)
+            // {
+            //     maxHeight = childHeight;
+            // }
+            maxHeight = max(maxHeight, getHeight(root->childrens[i]));
+        }
+        return maxHeight + 1;
+    }
+
 public:
     int data;
     vector<TreeNode *> childrens;
@@ -101,6 +121,11 @@ public:
 
             return height;
         }
+    }
+
+    int treeHeightRecursive()
+    {
+        return getHeight(root);
     }
 };
 

@@ -1,29 +1,26 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <stack>
 using namespace std;
 class TreeNode
 {
 private:
     TreeNode *root;
 
-    int nosOfLeafNode(TreeNode *root)
+    void preOrderTraversal(TreeNode *root)
     {
         if (root == nullptr)
-        {
-            return -1; // edge case
+        { // edge case
+            return;
         }
-        if (root->childrens.size() == 0)
-        {
-            return 1;
-        }
-        int leaf = 0;
+        cout << root->data << ", ";
 
         for (int i = 0; i < root->childrens.size(); i++)
         {
-            leaf += nosOfLeafNode(root->childrens[i]);
+
+            preOrderTraversal(root->childrens[i]);
         }
-        return leaf;
     }
 
 public:
@@ -45,7 +42,7 @@ public:
 
         while (!childs.empty())
         {
-            cout << "Enter the number of childs of the " << childs.front()->data << " node: ";
+            cout << "Hi, Enter the number of childs of the " << childs.front()->data << " node: ";
             int numberOfChilds;
             cin >> numberOfChilds;
             for (int i = 1; i <= numberOfChilds; i++)
@@ -84,40 +81,35 @@ public:
         }
     }
 
-    int numberOfLeafNodes()
+    void getPreOrder()
     {
-        if (root == nullptr)
-        {
-            return 0;
-        }
-        else
-        {
-            queue<TreeNode *> childs;
-            childs.push(root);
-            int leafs = 0;
-
-            while (!childs.empty())
-            {
-                TreeNode *current = childs.front();
-                int childSize = current->childrens.size();
-                // if the current dont have any childs means the vector is empty
-                if (childSize == 0)
-                {
-                    leafs++;
-                }
-                for (int i = 0; i < childSize; i++)
-                {
-                    childs.push(current->childrens[i]);
-                }
-                childs.pop();
-            }
-            return leafs;
-        }
+        return preOrderTraversal(root);
     }
 
-    int getLeafNode()
+    void preOrderTraversalIterative()
     {
-        return nosOfLeafNode(root);
+        if(root==nullptr){
+            return;
+        }
+        stack<TreeNode *> childs;
+        childs.push(root);
+
+        while (!childs.empty())
+        {
+            TreeNode *current = childs.top();
+            childs.pop();
+            cout << current->data << ", ";
+
+            for (int i = current->childrens.size() - 1; i >= 0; i--)
+            {
+                /*
+                we are start loop from the end of the childrens vector because stack follow LIFO so that first the the first child get out
+                assume the root node have 2,3,4 childs in stack ->  4,3,2 will store and first 2 comes out then same for 2 in next iteration first all childs from last to start will store
+                */
+                childs.push(current->childrens[i]);
+            }
+        }
+        cout << endl;
     }
 };
 
@@ -126,7 +118,8 @@ int main()
     TreeNode t1;
     t1.create();
     t1.printTree();
-    cout << "Number of leaf nodes in the tree is: " << t1.getLeafNode() << endl;
+    // t1.getPreOrder();
+    t1.preOrderTraversalIterative();
 
     return 0;
 }

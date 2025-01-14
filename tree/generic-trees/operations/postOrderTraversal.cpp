@@ -1,29 +1,25 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <stack>
 using namespace std;
 class TreeNode
 {
 private:
     TreeNode *root;
 
-    int nosOfLeafNode(TreeNode *root)
+    void postOrderTraversal(TreeNode *root)
     {
         if (root == nullptr)
         {
-            return -1; // edge case
+            return;
         }
-        if (root->childrens.size() == 0)
-        {
-            return 1;
-        }
-        int leaf = 0;
-
         for (int i = 0; i < root->childrens.size(); i++)
         {
-            leaf += nosOfLeafNode(root->childrens[i]);
+            postOrderTraversal(root->childrens[i]);
         }
-        return leaf;
+
+        cout << root->data << ", ";
     }
 
 public:
@@ -45,7 +41,7 @@ public:
 
         while (!childs.empty())
         {
-            cout << "Enter the number of childs of the " << childs.front()->data << " node: ";
+            cout << "Hi, Enter the number of childs of the " << childs.front()->data << " node: ";
             int numberOfChilds;
             cin >> numberOfChilds;
             for (int i = 1; i <= numberOfChilds; i++)
@@ -84,40 +80,44 @@ public:
         }
     }
 
-    int numberOfLeafNodes()
+    void getPostOrder()
+    {
+        return postOrderTraversal(root);
+    }
+    /*
+    Algorithm:
+    STEP 1: //? Push the root node into the first stack.
+    STEP 2: //? Pop a node from the first stack, push it into the second stack, and push its children into the first stack.
+    STEP 3: //? After processing all nodes, the second stack contains the nodes in post-order sequence.
+    */
+    void postOrderTraversalIterative()
     {
         if (root == nullptr)
         {
-            return 0;
+            return;
         }
-        else
+        stack<TreeNode *> s1; // for childs node
+        stack<TreeNode *> s2; // for post order
+        // STEP 1
+        s1.push(root);
+        while (!s1.empty())
         {
-            queue<TreeNode *> childs;
-            childs.push(root);
-            int leafs = 0;
-
-            while (!childs.empty())
+            TreeNode *current = s1.top();
+            // STEP 2
+            s2.push(s1.top());
+            s1.pop();
+            for (int i = 0; i < current->childrens.size(); i++)
             {
-                TreeNode *current = childs.front();
-                int childSize = current->childrens.size();
-                // if the current dont have any childs means the vector is empty
-                if (childSize == 0)
-                {
-                    leafs++;
-                }
-                for (int i = 0; i < childSize; i++)
-                {
-                    childs.push(current->childrens[i]);
-                }
-                childs.pop();
+                s1.push(current->childrens[i]);
             }
-            return leafs;
         }
-    }
-
-    int getLeafNode()
-    {
-        return nosOfLeafNode(root);
+        // STEP 3
+        while (!s2.empty())
+        {
+            cout << s2.top()->data << ", ";
+            s2.pop();
+        }
+        cout << endl;
     }
 };
 
@@ -126,7 +126,8 @@ int main()
     TreeNode t1;
     t1.create();
     t1.printTree();
-    cout << "Number of leaf nodes in the tree is: " << t1.getLeafNode() << endl;
+    // t1.getPostOrder();
+    t1.postOrderTraversalIterative();
 
     return 0;
 }
