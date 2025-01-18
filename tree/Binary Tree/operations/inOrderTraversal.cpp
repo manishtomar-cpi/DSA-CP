@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <stack>
 using namespace std;
 
 class BTNode
@@ -10,17 +11,15 @@ private:
     BTNode *right;
     int data;
 
-    int totalNumOfNode(BTNode *root)
+    void inOrder(BTNode *root)
     {
-
         if (root == nullptr)
         {
-            return 0;
+            return;
         }
-        int totalLeftNodes = totalNumOfNode(root->left);
-        int totalRightnodes = totalNumOfNode(root->right);
-
-        return totalLeftNodes + totalRightnodes + 1;
+        inOrder(root->left);
+        cout << root->data << ", ";
+        inOrder(root->right);
     }
 
 public:
@@ -78,7 +77,7 @@ public:
         }
     }
 
-    void levelOrderPrint()
+    void print()
     {
         queue<BTNode *> childs;
         if (root == nullptr)
@@ -105,32 +104,34 @@ public:
             cout << endl;
         }
     }
-    /*
-     we will traverse each node and if they have left right accordingly ++ nodes and storing in the queue;
-    */
-    int totalNodes()
-    {
-        // queue<BTNode *> childs;
-        // childs.push(root);
-        // int nodes = 0;
-        // while (!childs.empty())
-        // {
-        //     BTNode *current = childs.front();
-        //     childs.pop();
-        //     if (current->left)
-        //     {
-        //         nodes++;
-        //         childs.push(current->left);
-        //     }
-        //     if (current->right)
-        //     {
-        //         nodes++;
-        //         childs.push(current->right);
-        //     }
-        // }
 
-        // return nodes + 1; //? why + 1 because we left root for root we did +1;
-        return totalNumOfNode(root);
+    void getInorder()
+    {
+        /*
+        Start at the root node.
+        Push all the left children of the current node onto the stack until you reach a nullptr.
+        Pop a node from the stack, visit it, and move to its right child.
+        Repeat steps 2 and 3 until the stack is empty and the current node is nullptr.
+        */
+        stack<BTNode *> st;
+        BTNode *current = root;
+
+        while (current != nullptr || !st.empty())
+        //? loop run when both of the conditions true because when both the conditions true means we trave whole tree
+        {
+
+            while (current != nullptr)
+            { //? runs only when we come to that node which have left sub tree
+                st.push(current);
+                current = current->left;
+            }
+            // means we are at the leaf node of the left subtree
+            current = st.top();
+            st.pop();
+            cout << current->data << ", ";
+            // now print the right sub tree
+            current = current->right;
+        }
     }
 };
 
@@ -138,8 +139,7 @@ int main()
 {
     BTNode bt1;
     bt1.create();
-    bt1.levelOrderPrint();
-    cout << "Total nodes in our tree is: " << bt1.totalNodes() << endl;
-
+    bt1.print();
+    bt1.getInorder();
     return 0;
 }

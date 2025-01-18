@@ -34,7 +34,7 @@ public:
             cout << endl;
             if (left != -1) //-1 means no child
             {
-                // cretae
+                // create
                 BTNode *leftNode = new BTNode(left);
                 // making connection
                 current->left = leftNode;
@@ -117,7 +117,7 @@ public:
 
                 if (!childs.empty())
                 {
-                    childs.push(nullptr); // means we reach at null and the childs is not empty which menas we have some level to print if null is only the pointer in the queue means we travers all nodes
+                    childs.push(nullptr); // means we reach at null and the childs is not empty which means we have some level to print if null is only the pointer in the queue means we travers all nodes
                 }
             }
             else

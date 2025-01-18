@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <stack>
 using namespace std;
 
 class BTNode
@@ -10,17 +11,15 @@ private:
     BTNode *right;
     int data;
 
-    int totalNumOfNode(BTNode *root)
+    void inOrder(BTNode *root)
     {
-
         if (root == nullptr)
         {
-            return 0;
+            return;
         }
-        int totalLeftNodes = totalNumOfNode(root->left);
-        int totalRightnodes = totalNumOfNode(root->right);
-
-        return totalLeftNodes + totalRightnodes + 1;
+        inOrder(root->left);
+        cout << root->data << ", ";
+        inOrder(root->right);
     }
 
 public:
@@ -78,7 +77,7 @@ public:
         }
     }
 
-    void levelOrderPrint()
+    void print()
     {
         queue<BTNode *> childs;
         if (root == nullptr)
@@ -106,31 +105,34 @@ public:
         }
     }
     /*
-     we will traverse each node and if they have left right accordingly ++ nodes and storing in the queue;
+    D,L,R is the order(Data, Left, Right)
+    STEP-1: push the root into stack
+    STEP-2: make current to top, and pop the front, then print the data of the current
+    STEP-3: check for right subtree first if yes, push it into stack, then check of right sub tree push it into stack
+    STEP5-4: repeat step 2 and step 3 until stack became empty
     */
-    int totalNodes()
-    {
-        // queue<BTNode *> childs;
-        // childs.push(root);
-        // int nodes = 0;
-        // while (!childs.empty())
-        // {
-        //     BTNode *current = childs.front();
-        //     childs.pop();
-        //     if (current->left)
-        //     {
-        //         nodes++;
-        //         childs.push(current->left);
-        //     }
-        //     if (current->right)
-        //     {
-        //         nodes++;
-        //         childs.push(current->right);
-        //     }
-        // }
 
-        // return nodes + 1; //? why + 1 because we left root for root we did +1;
-        return totalNumOfNode(root);
+    void getPreorder()
+    {
+        stack<BTNode *> childs;
+        // step1
+        childs.push(root);
+        while (!childs.empty()) // step 4
+        {
+            // step2
+            BTNode *current = childs.top();
+            childs.pop();
+            cout << current->data << ", ";
+            // step 3
+            if (current->right)
+            {
+                childs.push(current->right);
+            }
+            if (current->left)
+            {
+                childs.push(current->left);
+            }
+        }
     }
 };
 
@@ -138,8 +140,7 @@ int main()
 {
     BTNode bt1;
     bt1.create();
-    bt1.levelOrderPrint();
-    cout << "Total nodes in our tree is: " << bt1.totalNodes() << endl;
-
+    bt1.print();
+    bt1.getPreorder();
     return 0;
 }

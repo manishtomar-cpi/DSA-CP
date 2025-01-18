@@ -6,7 +6,8 @@ class BTNode
 {
 
     BTNode *root;
-
+    BTNode *left;
+    BTNode *right;
     void recursivePrint(BTNode *root)
     {
         if (root == nullptr)
@@ -30,8 +31,7 @@ class BTNode
 
 public:
     int data;
-    BTNode *left;
-    BTNode *right;
+
     BTNode(int val) : data(val), right(nullptr), left(nullptr), root(nullptr) {};
     BTNode() : root(nullptr), left(nullptr), right(nullptr) {};
     void create(int val)
@@ -44,7 +44,7 @@ public:
         root->right = temp2;
     }
 
-    void getRecusrsivePrint()
+    void getRecursivePrint()
     {
         recursivePrint(root);
     }
@@ -68,7 +68,7 @@ public:
             cout << endl;
             if (left != -1) //-1 means no child
             {
-                // cretae
+                // create
                 BTNode *leftNode = new BTNode(left);
                 // making connection
                 current->left = leftNode;
@@ -154,7 +154,7 @@ public:
 
     ~BTNode()
     {
-        delete left; // this is recercive which will first go in the depth thne delete left right then root
+        delete left; // this is c which will first go in the depth thne delete left right then root
         delete right;
     }
 };
@@ -164,7 +164,7 @@ int main()
     BTNode bt1;
     // bt1.create(1);
     bt1.createBTLevelWise();
-    // bt1.getRecusrsivePrint();
+    bt1.getRecursivePrint();
     bt1.levelOrderPrint();
     cout << "level order traversal: ";
     bt1.levelOrderTraversal();
