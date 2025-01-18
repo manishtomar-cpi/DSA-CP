@@ -17,14 +17,14 @@ public:
     TreeNode(int data) : data(data), root(nullptr) {};
 
     /*
-   in this function we are taking the queue that queue will store the nodes and helps us for making childs(taking input) level wise
-   then first we will create the root node, then we will push root node to the queue
-   the  will start the while loop in which first we will store that node and remove from queue because in the next iteration we have the first child of that node
-   then we will run the for loop based on the number iof childs of that node and follow three steps
-   1- making new Node(child)
-   2-store to the current node child vector
-   3- push to the queue that newly generated child
-   */
+       in this function we are taking the queue that queue will store the nodes and helps us for making childs(taking input) level wise
+       then first we will create the root node, then we will push root node to the queue
+       the  will start the while loop in which first we will store that node and remove from queue because in the next iteration we have the first child of that node
+       then we will run the for loop based on the number iof childs of that node and follow three steps
+       1- making new Node(child)
+       2-store to the current node child vector
+       3- push to the queue that newly generated child
+       */
 
     TreeNode *makeTreeLevelWise()
     {
