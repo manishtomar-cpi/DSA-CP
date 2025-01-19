@@ -112,7 +112,17 @@ public:
     STEP4: if top have left push left into childs, if right then push into it on childs
     STEP5: repeat step 3 and 4 until childs became empty
     STEP6: now the result have the post order traversal
-    */
+        4
+       / \
+      2   6
+     / \
+    1   3
+The traversal will visit nodes in the following order:
+
+Postorder Sequence:
+1, 3, 2, 6, 4
+
+*/
 
     void getPostOrder()
     {
