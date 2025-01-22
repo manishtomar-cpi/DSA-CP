@@ -1,7 +1,9 @@
 ## Postorder Traversal (Left, Right, Root)
 
 ### Introduction
+
 Postorder traversal visits the nodes of a binary tree in the following order:
+
 1. Traverse the left subtree.
 2. Traverse the right subtree.
 3. Visit the root node.
@@ -11,17 +13,19 @@ This traversal is useful for deleting a tree or evaluating postfix expressions s
 ---
 
 ## Algorithm (Iterative Approach)
+
 1. Create two empty stacks: `childs` and `result`.
 2. Push the root node onto the `childs` stack.
 3. While the `childs` stack is not empty:
-    - Pop the top node from `childs` and push it onto `result`.
-    - If the popped node has a left child, push it onto `childs`.
-    - If the popped node has a right child, push it onto `childs`.
+   - Pop the top node from `childs` and push it onto `result`.
+   - If the popped node has a left child, push it onto `childs`.
+   - If the popped node has a right child, push it onto `childs`.
 4. Once the `childs` stack is empty, pop all nodes from the `result` stack and process them.
 
 ---
 
 ## Code
+
 ```cpp
 /*
 L, R, D is the order (Left, Right, Data)
@@ -71,7 +75,9 @@ void getPostOrder()
 ---
 
 ## Diagram
+
 For the binary tree:
+
 ```
         4
        / \
@@ -79,7 +85,9 @@ For the binary tree:
      / \
     1   3
 ```
+
 The traversal will visit nodes in the following order:
+
 ```
 Postorder Sequence:
 1, 3, 2, 6, 4
@@ -97,6 +105,7 @@ Stack Operation Sequence:
 ---
 
 ## Output
+
 ```
 1, 3, 2, 6, 4
 ```
@@ -104,6 +113,7 @@ Stack Operation Sequence:
 ---
 
 ## Key Features
+
 - **Space Complexity**: O(2h), where `h` is the height of the tree (due to two stacks).
 - **Time Complexity**: O(n), where `n` is the number of nodes.
 - **Traversal Order**: Left, Right, Root.
@@ -111,4 +121,5 @@ Stack Operation Sequence:
 ---
 
 ## Conclusion
+
 Postorder traversal is particularly useful when processing child nodes before the root, such as when deleting a tree. The iterative approach with two stacks ensures correct traversal without recursion.

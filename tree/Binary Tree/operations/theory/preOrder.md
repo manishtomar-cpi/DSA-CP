@@ -3,7 +3,9 @@
 ## Preorder Traversal (Root, Left, Right)
 
 ### Introduction
+
 Preorder traversal is a method of visiting the nodes of a binary tree in the following order:
+
 1. Visit the root node.
 2. Traverse the left subtree.
 3. Traverse the right subtree.
@@ -13,18 +15,20 @@ This traversal is often used when you want to copy a tree or evaluate expression
 ---
 
 ## Algorithm (Iterative Approach)
+
 1. Create an empty stack.
 2. Push the root node onto the stack.
 3. While the stack is not empty:
-    - Pop the top node and process it.
-    - If the popped node has a right child, push it onto the stack.
-    - If the popped node has a left child, push it onto the stack.
+   - Pop the top node and process it.
+   - If the popped node has a right child, push it onto the stack.
+   - If the popped node has a left child, push it onto the stack.
 
 This ensures that the left subtree is processed before the right subtree.
 
 ---
 
 ## Code
+
 ```cpp
 /*
 D, L, R is the order (Data, Left, Right)
@@ -62,7 +66,9 @@ void getPreorder()
 ---
 
 ## Diagram
+
 For the binary tree:
+
 ```
         4
        / \
@@ -70,7 +76,9 @@ For the binary tree:
      / \
     1   3
 ```
+
 The traversal will visit nodes in the following order:
+
 ```
 Preorder Sequence:
 4, 2, 1, 3, 6
@@ -87,6 +95,7 @@ Stack Operation Sequence:
 ---
 
 ## Output
+
 ```
 4, 2, 1, 3, 6
 ```
@@ -94,6 +103,7 @@ Stack Operation Sequence:
 ---
 
 ## Key Features
+
 - **Space Complexity**: O(h), where `h` is the height of the tree (stack size).
 - **Time Complexity**: O(n), where `n` is the number of nodes.
 - **Traversal Order**: Root, Left, Right.
@@ -101,4 +111,5 @@ Stack Operation Sequence:
 ---
 
 ## Conclusion
+
 Preorder traversal is efficient for scenarios where you need to process the root node before its subtrees. The iterative approach uses a stack to simulate the recursive process, ensuring the correct traversal order without recursion.
