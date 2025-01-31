@@ -69,7 +69,7 @@ public:
         }
     }
     /*
-    *Step 1: Find the Node to Delete
+    Step 1: Find the Node to Delete
     Start from the root and search for the node to be deleted (data).
 
     Use BST properties:
@@ -78,7 +78,7 @@ public:
     Keep track of the parent node.
     If the node is not found (current == nullptr), print "data not present in tree" and exit.
 
-    *Step 2: Handle Different Cases of Deletion
+    Step 2: Handle Different Cases of Deletion
 
     ?Case 1: Node is a Leaf (No Children)
     If current has no left and right child:
@@ -202,26 +202,26 @@ public:
         else
         {
             // so are going right Using the In-Order Successor (Leftmost node in right subtree)
-            TreeNode *sucessor = current->right;
-            TreeNode *sucessorParent = current;
-            while (sucessor->left)
+            TreeNode *successor  = current->right;
+            TreeNode *successorParent = current;
+            while (successor ->left)
             {
-                sucessorParent = sucessor;
-                sucessor = sucessor->left;
+                successorParent = successor ;
+                successor  = successor ->left;
             }
-            current->val = sucessor->val;
+            current->val = successor ->val;
             // If successor is the direct right child of the node being deleted, means  no left node of the sucessor
-            if (sucessorParent == current)
+            if (successorParent == current)
             {
-                sucessorParent->right = sucessor->right;
+                successorParent->right = successor ->right;
             }
             else
             {
                 // if the successor have the right child then if should be the left of parent
-                sucessorParent->left = sucessor->right;
+                successorParent->left = successor ->right;
             }
-            cout << "deleted " << data << " with both children replaced with " << sucessor->val << endl;
-            delete sucessor;
+            cout << "deleted " << data << " with both children replaced with " << successor->val << endl;
+            delete successor ;
         }
     }
 
