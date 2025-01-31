@@ -28,8 +28,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/manis/Desktop/DSA-CP/tree/Binary Tree/operations",
-      "program": "c:/Users/manis/Desktop/DSA-CP/tree/Binary Tree/operations/build/Debug/outDebug",
+      "cwd": "c:/Users/manis/Desktop/DSA-CP/tree/BST/operations",
+      "program": "c:/Users/manis/Desktop/DSA-CP/tree/BST/operations/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
@@ -39,6 +39,32 @@
           "ignoreFailures": true
         }
       ]
+    },
+    {
+      "name": "C/C++: gcc.exe build and debug active file",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "C:/MinGW/bin",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "C/C++: gcc.exe build active file"
     }
   ]
 }
