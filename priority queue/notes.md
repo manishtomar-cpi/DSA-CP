@@ -2,7 +2,7 @@
 
 ---
 
-## 1. Priority Queue 
+## 1. Priority Queue
 
 A **Priority Queue** is a special type of queue where every element has a priority. Unlike a normal queue (which is first-in-first-out), a priority queue always processes the element with the highest (or lowest) priority first.
 
@@ -20,7 +20,19 @@ A **Priority Queue** is a special type of queue where every element has a priori
 | **Max Priority Queue** | The element with the highest value is given priority. | When highest value should be processed first. |
 | **Min Priority Queue** | The element with the lowest value is given priority.  | When lowest value should be processed first.  |
 
-_Note:_ In C++, the Standard Template Library (STL) provides a `priority_queue` which is a max priority queue by default.
+## Implementation of Priority Queue
+
+A priority queue can be implemented using various data structures. Below is a comparison of different implementations based on **Insertion, Deletion, and Finding Min/Max**.
+
+| Data Structure                        | Insert   | Delete (Min/Max) | Get Min/Max | Space Complexity |
+| ------------------------------------- | -------- | ---------------- | ----------- | ---------------- |
+| **Unsorted Array**                    | O(1)     | O(n)             | O(n)        | O(n)             |
+| **Sorted Array**                      | O(n)     | O(1)             | O(1)        | O(n)             |
+| **Unsorted Linked List**              | O(1)     | O(n)             | O(n)        | O(n)             |
+| **Sorted Linked List**                | O(n)     | O(1)             | O(1)        | O(n)             |
+| **Binary Search Tree (BST)**          | O(log n) | O(log n)         | O(log n)    | O(n)             |
+| **Balanced BST (AVL/Red-Black Tree)** | O(log n) | O(log n)         | O(log n)    | O(n)             |
+| **Heap (Binary Heap - Min/Max)**      | O(log n) | O(log n)         | O(1)        | O(n)             |
 
 ---
 
