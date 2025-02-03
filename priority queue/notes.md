@@ -72,6 +72,150 @@ A **Heap** is a tree-based data structure that is often used to implement a prio
 - **Explanation:**  
   The parent (10) is the smallest element. Every parent node is smaller than its children.
 
+  ## 3. Insert and Delete Operations in Heaps
+
+### Insertion in a Heap
+
+Insertion in a heap follows these steps:
+
+1. **Insert the element at the next available position** in the heap (to maintain CBT properties).
+2. **Heapify Up (Bubble Up):**
+   - Compare the inserted node with its parent.
+   - If the heap property is violated, swap with the parent.
+   - Repeat this process until the heap property is restored.
+
+#### Example: Insert `45` in a Max Heap
+
+```
+Before insertion:
+        [50]
+       /    \
+    [30]    [40]
+    /  \     /  \
+  [10] [20] [35] [25]
+```
+
+After inserting `45` at the next available position (as the left child of `10`):
+
+```
+        [50]
+       /    \
+    [30]    [40]
+    /  \     /  \
+  [10] [20] [35] [25]
+  /
+[45]
+```
+
+**Heapify Up Process:**
+
+1. `45` is greater than its parent `10`, so swap them.
+
+```
+        [50]
+       /    \
+    [30]    [40]
+    /  \     /  \
+  [45] [20] [35] [25]
+  /
+[10]
+```
+
+2. `45` is greater than `30`, so swap them.
+
+```
+        [50]
+       /    \
+    [45]    [40]
+    /  \     /  \
+  [30] [20] [35] [25]
+  /
+[10]
+```
+
+3. `45` is still smaller than `50`, so no further swaps are needed.
+
+**Final Max Heap:**
+
+```
+        [50]
+       /    \
+    [45]    [40]
+    /  \     /  \
+  [30] [20] [35] [25]
+  /
+[10]
+```
+
+**Time Complexity:** `O(log n)`, as the node moves up at most `log n` levels.
+
+---
+
+### Deletion in a Heap
+
+1. **Remove the root element** (highest priority in a max heap, lowest in a min heap).
+2. **Replace the root with the last element** to maintain CBT properties.
+3. **Heapify Down (Bubble Down):**
+   - Compare the new root with its children.
+   - If the heap property is violated, swap with the larger child (max heap) or smaller child (min heap).
+   - Repeat until the heap property is restored.
+
+#### Example: Delete `50` from the Max Heap
+
+```
+Before deletion:
+        [50]
+       /    \
+    [45]    [40]
+    /  \     /  \
+  [30] [20] [35] [25]
+  /
+[10]
+
+Step 1: Replace `50` with `10`
+        [10]
+       /    \
+    [45]    [40]
+    /  \     /  \
+  [30] [20] [35] [25]
+
+Step 2: Heapify Down (swap `10` with `45`)
+        [45]
+       /    \
+    [10]    [40]
+    /  \     /  \
+  [30] [20] [35] [25]
+
+Step 3: Heapify Down (swap `10` with `30`)
+        [45]
+       /    \
+    [30]    [40]
+    /  \     /  \
+  [10] [20] [35] [25]
+```
+
+Final Max Heap after deletion:
+
+```
+        [45]
+       /    \
+    [30]    [40]
+    /  \     /  \
+  [10] [20] [35] [25]
+```
+
+**Time Complexity:** `O(log n)`, as the node moves down at most `log n` levels.
+
+---
+
+## Summary
+
+- **Insertion in a Heap:** Always inserts at the last position and restores the heap property using **Heapify Up**.
+- **Deletion in a Heap:** Always removes the root, replaces it with the last node, and restores the heap using **Heapify Down**.
+- **Time Complexity:** Both insertion and deletion operate in `O(log n)` time complexity due to heapifying.
+
+---
+
 ### Importance of Heaps:
 
 - **Efficient Operations:**  
@@ -129,6 +273,66 @@ A **Complete Binary Tree** is a binary tree in which:
 | **Array Representation** | Very efficient, no gaps.                                               | May have gaps if not complete.         | Most efficient, but rare in practice. |
 | **Use in Heaps**         | Yes, heaps are implemented as complete binary trees.                   | Not typically used for heaps.          | Not required for heap operations.     |
 
+### Array Representation of CBT
+
+A complete binary tree can be efficiently represented using an array. The position of each node is determined by its index in the array:
+
+- **Parent of node at index `i`** → Located at index `(i - 1) / 2`
+- **Left child of node at index `i`** → Located at index `2i + 1`
+- **Right child of node at index `i`** → Located at index `2i + 2`
+
+#### Example:
+
+```
+Index:  0   1   2   3   4   5   6
+Array: [A] [B] [C] [D] [E] [F] [G]
+```
+
+- `A` (index `0`) has children `B` (index `1`) and `C` (index `2`).
+- `B` (index `1`) has children `D` (index `3`) and `E` (index `4`).
+- `C` (index `2`) has children `F` (index `5`) and `G` (index `6`).
+
+```
+Index:  0   1   2   3   4   5   6
+Array: [A] [B] [C] [D] [E] [F] [G]
+```
+
+- **Proof of Parent Formula (`(i-1)/2`)**:
+
+  - For `D` (Index `3`): Parent index = `(3-1)/2 = 1` → `B` (Correct!)
+  - For `E` (Index `4`): Parent index = `(4-1)/2 = 1` → `B` (Correct!)
+  - For `F` (Index `5`): Parent index = `(5-1)/2 = 2` → `C` (Correct!)
+
+- **Proof of Left Child Formula (`2i+1`)**:
+
+  - For `A` (Index `0`): Left child index = `2(0)+1 = 1` → `B` (Correct!)
+  - For `B` (Index `1`): Left child index = `2(1)+1 = 3` → `D` (Correct!)
+
+- **Proof of Right Child Formula (`2i+2`)**:
+  - For `A` (Index `0`): Right child index = `2(0)+2 = 2` → `C` (Correct!)
+  - For `B` (Index `1`): Right child index = `2(1)+2 = 4` → `E` (Correct!)
+
+### Insertion in CBT
+
+Insertion into a CBT is always done at the leftmost available position at the last level to maintain completeness.
+
+- **Steps for insertion:**
+  1. Place the new node at the next available index in the array.
+  2. If needed, adjust the heap property (swap with parent if necessary).
+
+**Time Complexity:** `O(1)` for insertion in an array representation.
+
+### Deletion in CBT
+
+Deletion from a CBT typically removes the **last inserted node** to maintain completeness.
+
+- **Steps for deletion:**
+  1. Replace the root node with the last node in the array.
+  2. Remove the last node.
+  3. Adjust the heap property by swapping downwards (heapify).
+
+**Time Complexity:** `O(1)` for deleting the last node, `O(log n)` for heapify adjustments.
+
 ---
 
 ## Summary
@@ -141,5 +345,9 @@ A **Complete Binary Tree** is a binary tree in which:
 
 - **Complete Binary Tree (CBT):**  
   A binary tree that is completely filled on all levels except possibly the last. Nodes in the last level are filled from left to right. This property makes it very efficient for array-based storage and for implementing heaps.
+
+- **Insertion and Deletion in CBT:**
+  - Insertions occur at the leftmost available position in the last level, ensuring `O(1)` complexity.
+  - Deletions involve replacing the root with the last node and heapifying, ensuring `O(log n)` complexity for heap adjustments.
 
 ---
