@@ -48,6 +48,10 @@ public:
 
     void removeMin()
     {
+        if (pq.empty())
+        {
+            return;
+        }
         // Step 1: swapping least and first
         swap(pq[0], pq[pq.size() - 1]);
         // Step 2: removing the last
@@ -57,10 +61,40 @@ public:
 
         // Step 3: Heapify dowm (Bubble down)
         cout << "Heapify down..." << endl;
-        int parent = 0;
-        int parentLeft = (2 * parent) + 1;
-        int parentRight = (2 * parent) + 2;
-        
+        int parent = 0; // starting from first
+        while (true)
+        {
+            int leftChild = (2 * parent) + 1;
+            int rightChild = (2 * parent) + 2;
+            int smallestIndex = parent; // we are assuming the parent is smallest
+            if (leftChild < pq.size() && pq[leftChild] < pq[smallestIndex])
+            {
+                // here we are checking id the left child exist or not if yes compering the smallest at this step smallest is parent
+                smallestIndex = leftChild;
+            }
+            if (rightChild < pq.size() && pq[rightChild] < pq[smallestIndex])
+            {
+                // we are doing same as above just difference is now the smalles index is the left one in above if condition is true, and we are checking form the smalles from them
+                smallestIndex = rightChild;
+            }
+            // termination condition
+            if (smallestIndex == parent)
+            {
+                // this is only when the above both if conditions not executed
+                break;
+            }
+            //now swaping
+            swap(pq[parent], pq[smallestIndex]);
+            //and the parent is now became the new smallest
+            parent = smallestIndex;
+        }
+        /*
+        *THIS IS ALSO CALLED HEAP SORT,  //?If we execute remove min till the pq became empty then we will get the removed element in sorted manner
+        STEP1: add the elements in the MIN_HEAP
+        STEP2: remove the smallest each time 
+        TIME: Nlog(N)
+        SPACE: N, because we took the extra array to store element in PQ to enhance the sorted logic
+        */
     }
     void printHeap()
     {
@@ -75,9 +109,14 @@ int main()
 {
     PriorityQueue p1;
 
-    p1.insert(6);
-    p1.insert(5);
-
+    p1.insert(100);
+    p1.insert(10);
+    p1.insert(15);
+    p1.insert(4);
+    p1.insert(17);
+    p1.insert(21);
+    p1.insert(67);
+    p1.removeMin();
     p1.printHeap();
     return 0;
 }
