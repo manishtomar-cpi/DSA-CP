@@ -2,19 +2,19 @@
 
 ## What is Dynamic Programming (DP)?
 
-Dynamic Programming (DP) is a method for solving problems by breaking them down into simpler subproblems and solving each subproblem only once, storing its solution to avoid redundant calculations. It is particularly useful for optimization problems where the solution depends on previously computed values.
+Dynamic Programming (DP) is a method for solving problems by breaking them down into simpler sub problems and solving each subproblem only once, storing its solution to avoid redundant calculations. It is particularly useful for optimization problems where the solution depends on previously computed values.
 
 ### Key Concepts of DP:
 
-1. **Overlapping Subproblems**:
-   - Many problems can be broken down into smaller subproblems that are solved repeatedly. For instance, in Fibonacci sequence problems, the subproblems overlap because the same Fibonacci numbers are recalculated multiple times in a naive recursive approach. DP avoids this redundancy by solving each subproblem only once and storing the result.
+1. **Overlapping Sub problems**:
+   - Many problems can be broken down into smaller sub problems that are solved repeatedly. For instance, in Fibonacci sequence problems, the sub problems overlap because the same Fibonacci numbers are recalculated multiple times in a naive recursive approach. DP avoids this redundancy by solving each subproblem only once and storing the result.
 2. **Optimal Substructure**:
 
-   - A problem has optimal substructure if the optimal solution to the problem can be constructed from the optimal solutions to its subproblems. DP takes advantage of this property to build the solution step by step, using the results of smaller subproblems.
+   - A problem has optimal substructure if the optimal solution to the problem can be constructed from the optimal solutions to its sub problems. DP takes advantage of this property to build the solution step by step, using the results of smaller sub problems.
 
 3. **Memoization** (Top-Down Approach):
 
-   - In this approach, we recursively solve the problem and store the results of subproblems in a data structure (usually an array or a hash map) to avoid redundant calculations. This is known as "caching" the results of subproblems.
+   - In this approach, we recursively solve the problem and store the results of sub problems in a data structure (usually an array or a hash map) to avoid redundant calculations. This is known as "caching" the results of sub problems.
 
 4. **Tabulation** (Bottom-Up Approach):
    - In this approach, we solve the problem by filling up a table (usually an array) iteratively from the smallest subproblem to the largest. Each cell in the table stores the solution to a subproblem.
@@ -26,7 +26,7 @@ Dynamic Programming (DP) is a method for solving problems by breaking them down 
    - DP allows us to reduce the time complexity of problems that would otherwise require exponential time. For example, the naive Fibonacci function has an exponential time complexity of **O(2^n)**, but with DP (using either memoization or tabulation), we can reduce the time complexity to **O(n)**.
 
 2. **Avoiding Redundant Calculations**:
-   - DP prevents recomputation by storing the results of previously solved subproblems. This is particularly useful in problems with overlapping subproblems (e.g., in recursive Fibonacci, shortest path algorithms).
+   - DP prevents recomputation by storing the results of previously solved sub problems. This is particularly useful in problems with overlapping sub problems (e.g., in recursive Fibonacci, shortest path algorithms).
 
 ## Types of Problems that Benefit from DP:
 
@@ -45,7 +45,7 @@ Dynamic Programming (DP) is a method for solving problems by breaking them down 
      - **Ways to climb stairs problem**
      - **Word Break Problem**
 
-3. **Pathfinding Problems**:
+3. **Path finding Problems**:
 
    - Problems like finding the shortest or longest path in a graph often benefit from DP, like:
      - **Floyd-Warshall Algorithm** (for finding all-pairs shortest paths)
@@ -58,13 +58,13 @@ Dynamic Programming (DP) is a method for solving problems by breaking them down 
 
 ## When to Use DP?
 
-1. **Overlapping Subproblems**:
+1. **Overlapping Sub problems**:
 
-   - If your problem can be divided into subproblems that are solved repeatedly, DP can help avoid redundant calculations by storing solutions to subproblems and reusing them.
+   - If your problem can be divided into sub problems that are solved repeatedly, DP can help avoid redundant calculations by storing solutions to sub problems and reusing them.
 
 2. **Optimal Substructure**:
 
-   - If the problem has an optimal solution that can be constructed from the optimal solutions of its subproblems, DP is a good fit.
+   - If the problem has an optimal solution that can be constructed from the optimal solutions of its sub problems, DP is a good fit.
 
 3. **Large Input Sizes**:
    - If solving the problem using brute force or recursion results in exponential time complexity (e.g., O(2^n)), DP can help reduce the time complexity significantly, often to linear (O(n)) or polynomial (O(n^2)) time.
@@ -73,7 +73,7 @@ Dynamic Programming (DP) is a method for solving problems by breaking them down 
 
 1. **Fibonacci Sequence**:
 
-   - Without DP: A naive recursive solution leads to overlapping subproblems and exponential time complexity **O(2^n)**.
+   - Without DP: A naive recursive solution leads to overlapping sub problems and exponential time complexity **O(2^n)**.
    - With DP (using memoization or tabulation): The time complexity is reduced to **O(n)**.
    - **Use Case**: Finding the nth Fibonacci number efficiently.
 
@@ -86,16 +86,16 @@ Dynamic Programming (DP) is a method for solving problems by breaking them down 
 
 ## When Not to Use DP?
 
-1. **When the problem does not have overlapping subproblems**:
+1. **When the problem does not have overlapping sub problems**:
 
-   - If the subproblems do not repeat, there’s no benefit to using DP. In such cases, a greedy approach or divide-and-conquer might be better suited.
+   - If the sub problems do not repeat, there’s no benefit to using DP. In such cases, a greedy approach or divide-and-conquer might be better suited.
 
 2. **When the problem is simple enough**:
 
    - If the problem is simple or the input size is small (e.g., calculating Fibonacci for small `n`), DP may introduce unnecessary complexity.
 
 3. **When memory is a constraint**:
-   - DP typically requires additional memory to store results of subproblems (e.g., using a table or array). If memory is a constraint, you might need to optimize space complexity (for example, using a rolling array).
+   - DP typically requires additional memory to store results of sub problems (e.g., using a table or array). If memory is a constraint, you might need to optimize space complexity (for example, using a rolling array).
 
 ## Example Code: Fibonacci Sequence using DP
 
@@ -123,7 +123,10 @@ int main() {
     cout << "Fibonacci(" << n << ") = " << fib(n, dp) << endl;
     return 0;
 }
-### Tabulation (Bottom-Up):
+# Abulation (Bottom-Up)
+
+Below is an additional code snippet labeled as **"tabulation (Bottom-Up)"**. Even though the code shown is similar to the top-down version, this section is meant to represent the bottom-up approach. In a true bottom-up solution, you would typically build the solution iteratively without recursion.
+
 ```cpp
 #include <iostream>
 #include <vector>
@@ -131,7 +134,7 @@ using namespace std;
 
 int fib(int n, vector<int>& dp) {
     if (n <= 1) return n;
-
+    
     if (dp[n] != -1) return dp[n];  // Return stored result
 
     dp[n] = fib(n-1, dp) + fib(n-2, dp);  // Store result
@@ -146,10 +149,12 @@ int main() {
 }
 
 
-### Conclusion:
-Dynamic Programming is a powerful technique to solve optimization and counting problems by efficiently storing and reusing the results of subproblems, used when:
-The problem has overlapping subproblems.
-The problem has an optimal substructure.
-You need to improve performance from exponential to polynomial time complexity.
+## Conclusion
+
+Dynamic Programming is a powerful technique to solve optimization and counting problems by efficiently storing and reusing the results of sub problems. It is used when:
+
+- The problem has overlapping sub problems.
+- The problem has an optimal substructure.
+- You need to improve performance from exponential to polynomial time complexity.
+
 By carefully applying DP, you can optimize algorithms and solve problems that would otherwise be computationally expensive.
-````
