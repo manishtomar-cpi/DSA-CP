@@ -119,7 +119,7 @@ int minStepsDP_Iterative(int n)
         int first = dp[i - 1]; // we always take that step
         int second = INT8_MAX;
         int third = INT8_MAX;
-        if (i % 2 == 0)
+        if (i % 2 == 0) 
         {
             second = dp[i / 2];
         }
@@ -153,7 +153,7 @@ int main()
 
     Problem with vector<int> vec(n, -1);
     If we declare:
-    vector<int> vec(n, -1);  // ❌ Incorrect if we need to access vec[n]
+    vector<int> vec(n, -1);  //  Incorrect if we need to access vec[n]
     This creates a vector of size n.
     Valid indices are 0 to n-1.
     But in our function, we access vec[n], which is out of bounds.
