@@ -63,6 +63,8 @@
     "unordered_map": "cpp",
     "queue": "cpp",
     "xutility": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "algorithm": "cpp",
+    "xhash": "cpp"
   }
 }
