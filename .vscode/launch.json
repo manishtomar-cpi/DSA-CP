@@ -5,7 +5,8 @@
       "name": "C++ Debug",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/tree/generic-trees/operations/preOrderTraversal.exe",
+      "program": "${workspaceFolder}/priority queue/inbuiltPQ.exe",
+      // C:\Users\manish.tomar\Desktop\my work\DSA-CP\priority queue\inbuiltPQ.cpp
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}/tree/generic-trees/operations",
