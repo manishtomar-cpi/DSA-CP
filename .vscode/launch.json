@@ -29,8 +29,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/manis/Desktop/DSA-CP/tree/BST/operations",
-      "program": "c:/Users/manis/Desktop/DSA-CP/tree/BST/operations/build/Debug/outDebug",
+      "cwd": "c:/Users/manis/Desktop/DSA-CP/dynamic-programming/applications",
+      "program": "c:/Users/manis/Desktop/DSA-CP/dynamic-programming/applications/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
