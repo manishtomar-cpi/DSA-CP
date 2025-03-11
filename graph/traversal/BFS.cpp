@@ -51,7 +51,7 @@ public:
 
     /*
     BFS (Breadth-First Search) is a graph traversal algorithm that explores all neighbors of a node before moving to their neighbors. It uses a queue (FIFO) for traversal.
-    
+
     Push the startingVertex into the queue.
     Mark startingVertex as visited.
     Loop until the queue is empty:
@@ -77,7 +77,7 @@ public:
                - Mark i as visited
 
     */
-    void BFS_For_Connected_Graph(int startingVertex)
+    void BFS_Print(int startingVertex)
     {
         // take queue for ordering
         queue<int> adjacent_Vertex;
@@ -92,7 +92,7 @@ public:
             adjacent_Vertex.pop();
             cout << current << endl;
 
-            // make the curren to true ->overcome re visited
+            // make the current to true ->overcome re visited
             visited[current] = true;
             for (int i = 0; i < vertex; i++)
             {
@@ -100,9 +100,21 @@ public:
                 {
                     adjacent_Vertex.push(i);
 
-                    // because it is added in queue should not visit again
+                    // because it is added in queue should not be visit again
                     visited[i] = true;
                 }
+            }
+        }
+    }
+
+    // made for Disconnected graphs we are traversing the visited map and check which vertex is currently not visited
+    void BFS()
+    {
+        for (int i = 0; i < matrix.size(); i++)
+        {
+            if (!visited[i])
+            {
+                BFS_Print(i);
             }
         }
     }
@@ -110,9 +122,9 @@ public:
 
 int main()
 {
-    Graph g1(7, 8);
+    Graph g1(8, 6);
     g1.makeGraph();
-    g1.BFS_For_Connected_Graph(0);
+    g1.BFS();
 
     return 0;
 }

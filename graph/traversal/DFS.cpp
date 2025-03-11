@@ -49,7 +49,7 @@ public:
     }
     /*
     DFS (Depth-First Search) is a graph traversal algorithm that explores as far as possible along each branch before backtracking. It uses recursion or a stack to traverse a graph.
-    
+
     Step 1: Print the current vertex.
     Step 2: Mark the vertex as visited.
     Step 3: Traverse all adjacent vertices.
@@ -63,7 +63,7 @@ public:
                   - Call DFS(Graph, i, visited)
 
     */
-    void DFS_For_Connected_Graph(int startingVertex)
+    void DFS_Print(int startingVertex)
     {
         cout << startingVertex << endl;
         // first make the starting as true because edges are bydirectional so we will not come again on the visited one
@@ -76,7 +76,22 @@ public:
             // if seen connectiion thne call recusrion on the vertex then we will print all the connection of that vertex
             if (matrix[startingVertex][i] == 1 && visited[i] == false)
             {
-                DFS_For_Connected_Graph(i);
+                DFS_Print(i);
+            }
+        }
+    }
+
+
+    //made for Disconnected graphs we are traversing the visited map and check which vertex is currently not visited 
+    void DFS()
+    {
+        for (int i = 0; i < matrix.size(); i++)
+        {
+            //if not visited
+            if (!visited[i])
+            {
+                //visit that vertex
+                DFS_Print(i);
             }
         }
     }
@@ -84,9 +99,9 @@ public:
 
 int main()
 {
-    Graph g1(7, 8);
+    Graph g1(8, 6);
     g1.makeGraph();
-    g1.DFS_For_Connected_Graph(3);
+    g1.DFS();
 
     return 0;
 }
