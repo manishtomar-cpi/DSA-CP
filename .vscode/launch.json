@@ -5,7 +5,7 @@
       "name": "C++ Debug",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/graph/traversal/BFS.exe",
+      "program": "${workspaceFolder}/graph/numberOfConnectedComponents.exe",
       // C:\Users\manish.tomar\Desktop\my work\DSA-CP\priority queue\inbuiltPQ.cpp
       "args": [],
       "stopAtEntry": false,
