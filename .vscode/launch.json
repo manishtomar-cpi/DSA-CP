@@ -5,7 +5,7 @@
       "name": "C++ Debug",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/graph/algos/Prims.exe",
+      "program": "${workspaceFolder}/graph/algos/Kruskal.exe",
       // C:\Users\manish.tomar\Desktop\my work\DSA-CP\priority queue\inbuiltPQ.cpp
       "args": [],
       "stopAtEntry": false,
