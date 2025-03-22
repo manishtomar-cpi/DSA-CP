@@ -80,6 +80,14 @@ public:
 
         return minimumCost;
     }
+
+    /*
+        1- Initialize the spanning tree with a single vertex.
+        2- Find the edge with the minimum weight connecting a vertex in the MST to a vertex outside.
+        3- Add the selected edge and vertex to the MST.
+        4- Update the "near" array for all vertices.
+        5- Repeat steps 2–4 until all vertices are included in the MST.
+    */
     int prims()
     {
         int firstMinVertex = -1;
@@ -91,7 +99,7 @@ public:
             // taking only upper trangular matrix, because the graph is bidirectional
             for (int j = i + 1; j < vertexes; j++)
             {
-                // if any of the edge have lower then the curren tmin weight, updating the min and also storing the vertexes.
+                // if any of the edge have lower then the current mmin weight, updating the min and also storing the vertexes.
                 if (matrix[i][j] < minEdge)
                 {
                     minEdge = matrix[i][j];

@@ -67,12 +67,12 @@ private:
     'b' (98)	98	(7 * 31 + 98) % 10 = (217 + 98) % 10 = 5
     'c' (99)	99	(5 * 31 + 99) % 10 = (155 + 99) % 10 = 4
    
-    Final Hash of "abc" = 4 ✅
+    Final Hash of "abc" = 4 
     
     4. Advantages of This Hashing Method
-    ✔ Reduces Collisions: Similar words like "abc" and "bca" won’t get the same hash.
-    ✔ Uses Prime Multiplication: Improves uniform distribution.
-    ✔ Works Well for Strings: Many modern hash functions use polynomial rolling for text.
+     Reduces Collisions: Similar words like "abc" and "bca" won’t get the same hash.
+     Uses Prime Multiplication: Improves uniform distribution.
+     Works Well for Strings: Many modern hash functions use polynomial rolling for text.
 
     5. Alternative Prime Values
     p = 31 is good for lowercase English letters (a-z).
