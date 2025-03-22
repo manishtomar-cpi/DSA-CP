@@ -15,7 +15,7 @@ private:
     int minEdge;                       // use everywhere for finding the minimum
 
 public:
-    Graph(int vertex_size, int edge_size) : vertexes(vertex_size), edges(edge_size), matrix(vertex_size, vector<int>(vertex_size, INT_MAX)), near(vertex_size, INT_MAX), spanning_tree(2, vector<int>(vertex_size - 1)) {};
+    Graph(int vertex_size, int edge_size) : vertexes(vertex_size), edges(edge_size), matrix(vertex_size, vector<int>(vertex_size, INT16_MAX)), near(vertex_size, INT16_MAX), spanning_tree(2, vector<int>(vertex_size - 1)) {};
 
 public:
     void makeGraph()
@@ -38,7 +38,7 @@ public:
                 continue;
             }
 
-            // because edges are bydirectional
+            // because edges are by directional
             matrix[firstVertex][secondVertex] = weight;
             matrix[secondVertex][firstVertex] = weight;
         }
@@ -56,7 +56,7 @@ public:
             for (int j = i; j < vertexes; j++)
             {
                 // if the value in matrix is not min the it should be edge
-                if (matrix[i][j] != INT_MAX)
+                if (matrix[i][j] != INT16_MAX)
                 {
                     cout << i << " -> " << j << " = " << matrix[i][j] << endl;
                 }
@@ -92,7 +92,7 @@ public:
     {
         int firstMinVertex = -1;
         int secondMinVertex = -1;
-        minEdge = INT_MAX;
+        minEdge = INT16_MAX;
         // STEP 1: to find the minimum weight edge
         for (int i = 0; i < vertexes; i++)
         {
@@ -139,14 +139,14 @@ public:
         // STEP: 4 iterate vertex-2 times and find the next min edge by the help of near array and update it. ]
         // why vertex-2 because we already found the first min edge and the total min edge in spanning tree should be vertex-1
         //! we cant take vertex-2 because when we go to the
-        //!   spanning_tree[0][i] = k; // becaue the next min edge is matrix[k][near[k]]; -> this will override the current spanning tree, and when we calculate min cost we get the infinity because of incorrect index
-        //! that's why we starts loop from i=1 and itrtate till vertex-1
+        //!   spanning_tree[0][i] = k; // because the next min edge is matrix[k][near[k]]; -> this will override the current spanning tree, and when we calculate min cost we get the infinity because of incorrect index
+        //! that's why we starts loop from i=1 and iterate till vertex-1
         //! spanning_tree[1][i] = near[k];
         //! near[k] = -1; // because we added k in tree
 
         for (int i = 1; i < vertexes - 1; i++)
         {
-            int minDistance = INT_MAX; // why take this inside first loop because on each itertion it will find the next min edge and then update the near array then when we come next iteration we will stsrt form max
+            int minDistance = INT16_MAX; // why take this inside first loop because on each iteration it will find the next min edge and then update the near array then when we come next iteration we will stsrt form max
             int k = -1;                // for updating the near array respect to the vertex found new
 
             // STEP :4.1 - to found the new min edge
@@ -160,7 +160,7 @@ public:
             }
 
             // now update the spanning tree according to the new min edge
-            spanning_tree[0][i] = k; // becaue the next min edge is matrix[k][near[k]];
+            spanning_tree[0][i] = k; // because the next min edge is matrix[k][near[k]];
             spanning_tree[1][i] = near[k];
             near[k] = -1; // because we added k in tree
 
