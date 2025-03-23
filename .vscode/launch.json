@@ -6,7 +6,6 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/graph/algos/Dijkstra.exe",
-      // C:\Users\manish.tomar\Desktop\my work\DSA-CP\priority queue\inbuiltPQ.cpp
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}/tree/generic-trees/operations",
@@ -29,8 +28,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/manis/Desktop/DSA-CP/dynamic-programming/applications",
-      "program": "c:/Users/manis/Desktop/DSA-CP/dynamic-programming/applications/build/Debug/outDebug",
+      "cwd": "c:/Users/manis/Desktop/DSA-CP/leetcode/top-150/array-string",
+      "program": "c:/Users/manis/Desktop/DSA-CP/leetcode/top-150/array-string/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
