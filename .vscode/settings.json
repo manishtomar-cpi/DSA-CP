@@ -65,6 +65,11 @@
     "xutility": "cpp",
     "vector": "cpp",
     "algorithm": "cpp",
-    "xhash": "cpp"
+    "xhash": "cpp",
+    "exception": "cpp",
+    "memory": "cpp",
+    "tuple": "cpp",
+    "utility": "cpp",
+    "xstring": "cpp"
   }
 }
