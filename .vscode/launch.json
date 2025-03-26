@@ -5,7 +5,7 @@
       "name": "C++ Debug",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/graph/algos/Dijkstra.exe",
+      "program": "${workspaceFolder}/leetcode/top-150/array-string/medium/jumpGame.exe",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}/tree/generic-trees/operations",

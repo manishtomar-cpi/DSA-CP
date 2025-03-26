@@ -45,7 +45,7 @@ public:
         temp->isLast = true; // because it is the last char of that word
     }
 
-    string longestCommonPrefix(vector<string> &strs)
+    string longestCommonPrefix(vector<string> &strs) //! TIME: n is the size of prefix in worst case we will traverse the first string in vector so, O(N), SPACE: O(1)
     {
         if (strs.size() == 0)
         {
@@ -93,3 +93,27 @@ int main()
 
     return 0;
 }
+
+//! without trie
+// string longestCommonPrefix(vector<string>& strs) { //!TIME: m is size of first string , n is size of whole array then O(M*N) ~ O(N), SPACE: O(1)
+//     if (strs.size() == 0) {
+//         return "";
+//     }
+//     if (strs.size() == 1) {
+//         return strs[0];
+//     }
+//     string first = strs[0];
+//     string prefix = "";
+//     for (int i = 0; i < first.size(); i++) {
+//         for (int j = 1; j < strs.size(); j++) {
+//             if (i >= strs[j].size() ||
+//                 first[i] != strs[j][i]) { // why i >= strs[j].size()? because if one string is shorter, it could cause runtime error.
+
+//                 return prefix;
+//             }
+//         }
+//         prefix += first[i];
+//     }
+
+//     return prefix;
+// }
