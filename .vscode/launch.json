@@ -5,7 +5,7 @@
       "name": "C++ Debug",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/leetcode/top-150/array-string/medium/jumpGame.exe",
+      "program": "${workspaceFolder}/leetcode/top-150/two-pointers/medium/3sum.exe",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}/tree/generic-trees/operations",
