@@ -5,7 +5,7 @@
       "name": "C++ Debug",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/leetcode/top-150/two-pointers/medium/3sum.exe",
+      "program": "${workspaceFolder}/leetcode/top-150/hashmap/easy/wordPattern.exe",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}/tree/generic-trees/operations",
