@@ -158,7 +158,7 @@ int main()
     // cout << boolalpha;
     // cout << s1.isEmpty() << endl;
 
-    string str = "1+4+5+2-3+6+8";
+    string str = "a+b*c/d-e+f*g-h/i+j*k";
 
     cout << infixToPostfix(str) << endl;
 
