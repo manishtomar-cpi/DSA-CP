@@ -208,7 +208,7 @@ int evalvation(string str)
 int main()
 {
 
-    string str = "1+4+5+2-3+6+8";
+    string str = "3*5+6/2-4";
 
     // cout << infixToPostfix(str) << endl;
     cout << evalvation(str) << endl;
