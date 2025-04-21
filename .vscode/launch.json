@@ -28,8 +28,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/manis/Desktop/DSA-CP/leetcode/top-150/linkedlist/medium",
-      "program": "c:/Users/manis/Desktop/DSA-CP/leetcode/top-150/linkedlist/medium/build/Debug/outDebug",
+      "cwd": "c:/Users/manis/Desktop/DSA-CP/leetcode/top-150/tree/easy",
+      "program": "c:/Users/manis/Desktop/DSA-CP/leetcode/top-150/tree/easy/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
