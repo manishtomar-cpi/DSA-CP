@@ -5,7 +5,7 @@
       "name": "C++ Debug",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/leetcode/top-150/linkedlist/medium/lru-cache.exe",
+      "program": "${workspaceFolder}/leetcode/top-150/tree/easy/pathSum.exe",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}/tree/generic-trees/operations",
