@@ -99,6 +99,88 @@ public:
         }
     }
 
+    void preOrderTraversal()
+    {
+        cout << ">>>>>>>>>>>>>>>>PRE>>>>>>>>>>>>" << endl;
+        if (root == nullptr)
+        {
+            return;
+        }
+        stack<TreeNode *> st;
+        TreeNode *current = root;
+        while (!st.empty() || current)
+        {
+            while (current)
+            {
+                st.push(current);
+                current = current->left;
+            }
+            current = st.top();
+            st.pop();
+            cout << current->val << " ";
+
+            current = current->right;
+        }
+        cout << endl;
+    }
+
+    void inOrder()
+    {
+        cout << ">>>>>>>>>>>>>>>>IN>>>>>>>>>>>>" << endl;
+
+        if (root == nullptr)
+        {
+            return;
+        }
+        TreeNode *current = root;
+        stack<TreeNode *> st;
+        while (!st.empty() || current)
+        {
+            while (current)
+            {
+                cout << current->val << " ";
+                st.push(current);
+                current = current->left;
+            }
+            current = st.top();
+            st.pop();
+            current = current->right;
+        }
+        cout << endl;
+    }
+
+    void postOrder()
+    {
+        cout << ">>>>>>>>>>>>>>>>POST>>>>>>>>>>>>" << endl;
+
+        stack<TreeNode *> childs;
+        stack<TreeNode *> res;
+        if (root == nullptr)
+        {
+            return;
+        }
+        childs.push(root);
+        while (!childs.empty())
+        {
+            TreeNode *current = childs.top();
+            childs.pop();
+            res.push(current);
+            if (current->left)
+            {
+                childs.push(current->left);
+            }
+            if (current->right)
+            {
+                childs.push(current->right);
+            }
+        }
+        while (!res.empty())
+        {
+            cout << res.top()->val << " ";
+            res.pop();
+        }
+    }
+
     TreeNode *invertTree(TreeNode *root)
     {
         if (root == nullptr)
@@ -184,7 +266,8 @@ int main()
 {
     BinaryTree b1;
     b1.insert();
-    TreeNode *inverted = b1.invertTree(b1.getRoot());
-    b1.printTreeByRoot(inverted);
+    b1.preOrderTraversal();
+    b1.inOrder();
+    b1.postOrder();
     return 0;
 }
