@@ -83,7 +83,7 @@ public:
             {
                 temp = temp->childrens[index]; // move to that char to find the next one
             }
-                }
+        }
         // now check it is last word or not
         return temp->isLast;
     }
