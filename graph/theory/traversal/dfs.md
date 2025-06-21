@@ -1,171 +1,368 @@
-# Graph DFS (Depth-First Search) using Adjacency List and Adjacency Matrix
+Here are the two updated Markdown files in correct format, each shown as a single fenced code block containing the full contents. You can copy each block into its own `.md` file (`graph_bfs.md` and `graph_dfs.md`).
 
-DFS (Depth-First Search) is a graph traversal algorithm. It explores as far as possible along each path before backtracking. It uses recursion and a visited tracker.
+```markdown
+<!-- graph_bfs.md -->
 
-------------------------------------------------------------
-Graph Diagram (Undirected)
+# Graph BFS (Breadth-First Search)
 
-    0
-   / \
-  1   2
-   \ / \
-    3   4
+Breadth-First Search (BFS) visits all nodes of a graph level by level, starting from a given node and exploring all its neighbors before moving deeper.
+
+## Graph
+
+Text-based diagram:
+
+```
+
+```
+0
+```
+
+/&#x20;
+1   2
+\ /&#x20;
+3   4
+
+```
 
 Edges: (0-1), (0-2), (1-3), (2-3), (2-4)
 
-Graph has 5 nodes: 0 to 4
-------------------------------------------------------------
+Nodes: 0, 1, 2, 3, 4
 
-We will implement DFS using:
-1. Adjacency List
-2. Adjacency Matrix
+---
 
-Both versions are written using a class and simple helper functions.
+## Adjacency Matrix
 
-------------------------------------------------------------
-Code in C++ (with simple comments)
+A 5×5 matrix where `matrix[i][j] = 1` if there is an edge between `i` and `j`:
 
+```
+
+0 1 2 3 4
+0 0 1 1 0 0
+1 1 0 0 1 0
+2 1 0 0 1 1
+3 0 1 1 0 0
+4 0 0 1 0 0
+
+````
+
+### BFS Algorithm (Matrix)
+
+1. Create `bool visited[5] = {false}`.
+2. Use a `queue<int>` to track nodes.
+3. Mark the start node `0` as visited and enqueue it.
+4. While the queue is not empty:
+   - Dequeue `u`.
+   - Print `u`.
+   - For `i` from 0 to 4:
+     - If `matrix[u][i] == 1` and `!visited[i]`, mark `i` visited and enqueue `i`.
+
+### Code
+
+```cpp
+#include <iostream>
+#include <queue>
+
+// Perform BFS on an adjacency matrix
+void bfs_matrix(int matrix[5][5], int start) {
+    bool visited[5] = {false};
+    std::queue<int> q;
+
+    // Start from 'start'
+    visited[start] = true;
+    q.push(start);
+
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        std::cout << u << " ";  // process node
+
+        // Explore all possible neighbors
+        for (int i = 0; i < 5; ++i) {
+            if (matrix[u][i] == 1 && !visited[i]) {
+                visited[i] = true;  // mark visited
+                q.push(i);          // enqueue
+            }
+        }
+    }
+}
+````
+
+---
+
+## Adjacency List
+
+Each node has a list of its neighbors:
+
+```
+0: 1, 2
+1: 0, 3
+2: 0, 3, 4
+3: 1, 2
+4: 2
+```
+
+### BFS Algorithm (List)
+
+1. Create `bool visited[5] = {false}`.
+2. Use a `queue<int>`.
+3. Mark `0` as visited and enqueue.
+4. While the queue is not empty:
+
+   * Dequeue `u`.
+   * Print `u`.
+   * For each neighbor `v` in `adj[u]`:
+
+     * If `!visited[v]`, mark visited and enqueue.
+
+### Code
+
+```cpp
 #include <iostream>
 #include <vector>
-#include <unordered_map>
-using namespace std;
+#include <queue>
 
-class Solution {
-public:
-    vector<int> res_list; // stores DFS result for list
-    unordered_map<int, bool> visited_list; // tracks visited nodes in list
+// Perform BFS on an adjacency list
+void bfs_list(const std::vector<int> adj[], int start) {
+    bool visited[5] = {false};
+    std::queue<int> q;
 
-    vector<int> res_matrix; // stores DFS result for matrix
-    unordered_map<int, bool> visited_matrix; // tracks visited nodes in matrix
+    visited[start] = true;  // start node
+    q.push(start);
 
-    // Helper function for DFS using adjacency list
-    void dfs_list_helper(int node, vector<vector<int>>& adj) {
-        // Loop through all neighbors of the current node
-        for (int i = 0; i < adj[node].size(); i++) {
-            int neighbor = adj[node][i];
-            // If neighbor is not visited, visit it
-            if (!visited_list[neighbor]) {
-                res_list.push_back(neighbor);         // add to result
-                visited_list[neighbor] = true;        // mark visited
-                dfs_list_helper(neighbor, adj);       // recurse
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        std::cout << u << " ";
+
+        // Visit each neighbor
+        for (int i = 0; i < adj[u].size(); ++i) {
+            int v = adj[u][i];
+            if (!visited[v]) {
+                visited[v] = true;  // mark visited
+                q.push(v);          // enqueue
             }
         }
     }
+}
+```
 
-    // DFS function using adjacency list
-    vector<int> dfs_using_list(vector<vector<int>>& adj) {
-        res_list.clear();
-        visited_list.clear();
+---
 
-        res_list.push_back(0);        // start from node 0
-        visited_list[0] = true;       // mark as visited
-        dfs_list_helper(0, adj);      // call helper
+## Example Usage
 
-        return res_list;
-    }
-
-    // Helper function for DFS using adjacency matrix
-    void dfs_matrix_helper(int node, vector<vector<int>>& matrix) {
-        // Loop through all nodes to check connection
-        for (int i = 0; i < matrix[node].size(); i++) {
-            // If there is an edge and node not visited
-            if (matrix[node][i] == 1 && !visited_matrix[i]) {
-                res_matrix.push_back(i);              // add to result
-                visited_matrix[i] = true;             // mark visited
-                dfs_matrix_helper(i, matrix);         // recurse
-            }
-        }
-    }
-
-    // DFS function using adjacency matrix
-    vector<int> dfs_using_matrix(vector<vector<int>>& matrix) {
-        res_matrix.clear();
-        visited_matrix.clear();
-
-        res_matrix.push_back(0);         // start from node 0
-        visited_matrix[0] = true;        // mark as visited
-        dfs_matrix_helper(0, matrix);    // call helper
-
-        return res_matrix;
-    }
-};
-
-------------------------------------------------------------
-Main Function to Run Both DFS Versions
-
+```cpp
 int main() {
-    Solution obj;
-
-    // Create Adjacency List
-    vector<vector<int>> adj_list(5);
-    adj_list[0] = {1, 2};
-    adj_list[1] = {0, 3};
-    adj_list[2] = {0, 3, 4};
-    adj_list[3] = {1, 2};
-    adj_list[4] = {2};
-
-    // Run DFS using adjacency list
-    vector<int> result_list = obj.dfs_using_list(adj_list);
-
-    cout << "DFS using Adjacency List: ";
-    for (int i = 0; i < result_list.size(); i++) {
-        cout << result_list[i] << " ";
-    }
-    cout << endl;
-
-    // Create Adjacency Matrix (5x5)
-    vector<vector<int>> adj_matrix = {
-        {0,1,1,0,0},  // Node 0 connected to 1 and 2
-        {1,0,0,1,0},  // Node 1 connected to 0 and 3
-        {1,0,0,1,1},  // Node 2 connected to 0, 3, and 4
-        {0,1,1,0,0},  // Node 3 connected to 1 and 2
-        {0,0,1,0,0}   // Node 4 connected to 2
+    // Adjacency matrix
+    int matrix[5][5] = {
+        {0,1,1,0,0},
+        {1,0,0,1,0},
+        {1,0,0,1,1},
+        {0,1,1,0,0},
+        {0,0,1,0,0}
     };
+    std::cout << "BFS (Matrix): ";
+    bfs_matrix(matrix, 0);
+    std::cout << "\n";
 
-    // Run DFS using adjacency matrix
-    vector<int> result_matrix = obj.dfs_using_matrix(adj_matrix);
-
-    cout << "DFS using Adjacency Matrix: ";
-    for (int i = 0; i < result_matrix.size(); i++) {
-        cout << result_matrix[i] << " ";
-    }
-    cout << endl;
+    // Adjacency list
+    std::vector<int> adj[5];
+    adj[0] = {1,2};
+    adj[1] = {0,3};
+    adj[2] = {0,3,4};
+    adj[3] = {1,2};
+    adj[4] = {2};
+    std::cout << "BFS (List): ";
+    bfs_list(adj, 0);
+    std::cout << std::endl;
 
     return 0;
 }
+```
 
-------------------------------------------------------------
-Expected Output (based on neighbor order):
+---
 
-DFS using Adjacency List: 0 1 3 2 4  
-DFS using Adjacency Matrix: 0 1 3 2 4
+## Time Complexity
 
-Note: The DFS path may vary based on neighbor order in the input.
+* **Matrix**: O(V²)
+* **List**: O(V + E)
 
-------------------------------------------------------------
-How DFS Works (Simple Steps):
+Where V = number of vertices, E = number of edges.
 
-1. Start from node 0
-2. Visit a neighbor (e.g., 1), mark it visited
-3. From that neighbor, go to another neighbor (e.g., 3)
-4. Repeat until no unvisited neighbors, then backtrack
-5. Continue with next unvisited node if needed
+````
 
-------------------------------------------------------------
-Time and Space Complexity:
+```markdown
+<!-- graph_dfs.md -->
 
-- Time Complexity:
-  - Adjacency List: O(V + E)
-  - Adjacency Matrix: O(V^2)
+# Graph DFS (Depth-First Search)
 
-- Space Complexity:
-  - O(V) for visited map
-  - O(V) recursion stack space in worst case
+Depth-First Search (DFS) explores as far as possible along each branch before backtracking, using recursion and a visited tracker.
 
-------------------------------------------------------------
-Summary:
+## Graph
 
-- DFS explores graph deeply before backtracking
-- Recursive implementation is clean and easy
-- Works for both list and matrix formats
-- Best for checking connectivity or path existence
+Text-based diagram:
+
+````
+
+```
+0
+```
+
+/&#x20;
+1   2
+\ /&#x20;
+3   4
+
+```
+
+Edges: (0-1), (0-2), (1-3), (2-3), (2-4)  
+Nodes: 0, 1, 2, 3, 4
+
+---
+
+## Adjacency Matrix
+
+```
+
+0 1 2 3 4
+0 0 1 1 0 0
+1 1 0 0 1 0
+2 1 0 0 1 1
+3 0 1 1 0 0
+4 0 0 1 0 0
+
+```
+
+## Adjacency List
+
+```
+
+0: 1, 2
+1: 0, 3
+2: 0, 3, 4
+3: 1, 2
+4: 2
+
+````
+
+---
+
+## DFS Algorithm (Matrix)
+
+1. Create `bool visited[5] = {false}`.
+2. Mark start node `0` visited, call recursive helper.
+3. In helper for node `u`:
+   - Print `u`.
+   - For `i` from 0 to 4:
+     - If `matrix[u][i] == 1` and `!visited[i]`, mark visited and recurse on `i`.
+
+### Code
+
+```cpp
+#include <iostream>
+#include <vector>
+
+// Recursive DFS for adjacency matrix
+void dfs_matrix_helper(int u, std::vector<std::vector<int>>& matrix, std::vector<bool>& visited) {
+    std::cout << u << " ";      // process node
+    visited[u] = true;          // mark visited
+
+    // Explore all possible neighbors
+    for (int i = 0; i < matrix[u].size(); ++i) {
+        if (matrix[u][i] == 1 && !visited[i]) {
+            dfs_matrix_helper(i, matrix, visited);  // recurse
+        }
+    }
+}
+
+void dfs_matrix(std::vector<std::vector<int>>& matrix) {
+    std::vector<bool> visited(5, false);
+    dfs_matrix_helper(0, matrix, visited);
+}
+````
+
+---
+
+## DFS Algorithm (List)
+
+1. Create `bool visited[5] = {false}`.
+2. Mark start node `0` visited, call recursive helper.
+3. In helper for node `u`:
+
+   * Print `u`.
+   * For each neighbor `v` in `adj[u]`:
+
+     * If `!visited[v]`, mark visited and recurse on `v`.
+
+### Code
+
+```cpp
+#include <iostream>
+#include <vector>
+
+// Recursive DFS for adjacency list
+void dfs_list_helper(int u, const std::vector<std::vector<int>>& adj, std::vector<bool>& visited) {
+    std::cout << u << " ";      // process node
+    visited[u] = true;          // mark visited
+
+    // Visit each neighbor
+    for (int i = 0; i < adj[u].size(); ++i) {
+        int v = adj[u][i];
+        if (!visited[v]) {
+            dfs_list_helper(v, adj, visited);  // recurse
+        }
+    }
+}
+
+void dfs_list(const std::vector<std::vector<int>>& adj) {
+    std::vector<bool> visited(5, false);
+    dfs_list_helper(0, adj, visited);
+}
+```
+
+---
+
+## Example Usage
+
+```cpp
+int main() {
+    // Adjacency matrix
+    std::vector<std::vector<int>> matrix = {
+        {0,1,1,0,0},
+        {1,0,0,1,0},
+        {1,0,0,1,1},
+        {0,1,1,0,0},
+        {0,0,1,0,0}
+    };
+    std::cout << "DFS (Matrix): ";
+    dfs_matrix(matrix);
+    std::cout << "\n";
+
+    // Adjacency list
+    std::vector<std::vector<int>> adj = {
+        {1,2},
+        {0,3},
+        {0,3,4},
+        {1,2},
+        {2}
+    };
+    std::cout << "DFS (List): ";
+    dfs_list(adj);
+    std::cout << std::endl;
+
+    return 0;
+}
+```
+
+---
+
+## Time Complexity
+
+* **Matrix**: O(V²)
+* **List**: O(V + E)
+
+Where V = number of vertices, E = number of edges.
+
+```
+
+Feel free to save each block directly as `graph_bfs.md` and `graph_dfs.md`.
+```
