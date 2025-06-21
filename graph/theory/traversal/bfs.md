@@ -1,59 +1,56 @@
-```markdown
-<!-- graph_bfs.md -->
-
 # Graph BFS (Breadth-First Search)
 
-Breadth-First Search (BFS) visits all nodes of a graph level by level, starting from a given node and exploring all its neighbors before moving deeper.
+**Breadth-First Search (BFS)** visits all nodes of a graph level by level. Starting from a given node, it explores all its neighbors before moving to the next level.
 
-## Graph
+---
+
+##  Graph Structure
 
 Text-based diagram:
 
 ```
-
-```
-0
-```
-
-/&#x20;
-1   2
-\ /&#x20;
-3   4
-
+      0
+     / \
+    1   2
+     \ / \
+      3   4
 ```
 
-Edges: (0-1), (0-2), (1-3), (2-3), (2-4)  
-Nodes: 0, 1, 2, 3, 4
+- **Edges**: (0–1), (0–2), (1–3), (2–3), (2–4)  
+- **Nodes**: 0, 1, 2, 3, 4
 
 ---
 
-## Adjacency Matrix
+##  Adjacency Matrix
 
-A 5×5 matrix where `matrix[i][j] = 1` if there is an edge between `i` and `j`:
+A 5×5 matrix where `matrix[i][j] = 1` indicates an edge between nodes `i` and `j`:
 
 ```
+    0 1 2 3 4
+  ------------
+0 | 0 1 1 0 0
+1 | 1 0 0 1 0
+2 | 1 0 0 1 1
+3 | 0 1 1 0 0
+4 | 0 0 1 0 0
+```
 
-0 1 2 3 4
-0 0 1 1 0 0
-1 1 0 0 1 0
-2 1 0 0 1 1
-3 0 1 1 0 0
-4 0 0 1 0 0
+---
 
-````
+###  BFS Algorithm (Matrix Representation)
 
-### BFS Algorithm (Matrix)
+1. Initialize `visited[5] = {false}`.
+2. Use a `queue<int>` to process nodes.
+3. Mark the **start node** (e.g., 0) as visited and enqueue it.
+4. While the queue is not empty:
+   - Dequeue `u`.
+   - Print `u`.
+   - For each `i` from 0 to 4:
+     - If `matrix[u][i] == 1` and `!visited[i]`, mark `i` visited and enqueue `i`.
 
-1. Create `bool visited[5] = {false}`.  
-2. Use a `queue<int>` to track nodes.  
-3. Mark the start node `0` as visited and enqueue it.  
-4. While the queue is not empty:  
-   - Dequeue `u`.  
-   - Print `u`.  
-   - For `i` from 0 to 4:  
-     - If `matrix[u][i] == 1` and `!visited[i]`, mark `i` visited and enqueue `i`.  
+---
 
-### Code
+###  Code: BFS using Adjacency Matrix
 
 ```cpp
 #include <iostream>
@@ -64,54 +61,54 @@ void bfs_matrix(int matrix[5][5], int start) {
     bool visited[5] = {false};
     std::queue<int> q;
 
-    // Start from 'start'
     visited[start] = true;
     q.push(start);
 
     while (!q.empty()) {
         int u = q.front();
         q.pop();
-        std::cout << u << " ";  // process node
+        std::cout << u << " ";
 
-        // Explore all possible neighbors
         for (int i = 0; i < 5; ++i) {
             if (matrix[u][i] == 1 && !visited[i]) {
-                visited[i] = true;  // mark visited
-                q.push(i);          // enqueue
+                visited[i] = true;
+                q.push(i);
             }
         }
     }
 }
-````
+```
 
 ---
 
-## Adjacency List
+##  Adjacency List
 
 Each node has a list of its neighbors:
 
 ```
-0: 1, 2
-1: 0, 3
-2: 0, 3, 4
-3: 1, 2
+0: 1, 2  
+1: 0, 3  
+2: 0, 3, 4  
+3: 1, 2  
 4: 2
 ```
 
-### BFS Algorithm (List)
+---
 
-1. Create `bool visited[5] = {false}`.
+###  BFS Algorithm (List Representation)
+
+1. Initialize `visited[5] = {false}`.
 2. Use a `queue<int>`.
-3. Mark `0` as visited and enqueue.
+3. Mark the **start node** (e.g., 0) as visited and enqueue it.
 4. While the queue is not empty:
+   - Dequeue `u`.
+   - Print `u`.
+   - For each neighbor `v` in `adj[u]`:
+     - If `!visited[v]`, mark it visited and enqueue it.
 
-   * Dequeue `u`.
-   * Print `u`.
-   * For each neighbor `v` in `adj[u]`:
+---
 
-     * If `!visited[v]`, mark visited and enqueue.
-
-### Code
+###  Code: BFS using Adjacency List
 
 ```cpp
 #include <iostream>
@@ -123,21 +120,18 @@ void bfs_list(const std::vector<int> adj[], int start) {
     bool visited[5] = {false};
     std::queue<int> q;
 
-    // Start from 'start'
     visited[start] = true;
     q.push(start);
 
     while (!q.empty()) {
         int u = q.front();
         q.pop();
-        std::cout << u << " ";  // process node
+        std::cout << u << " ";
 
-        // Visit each neighbor
-        for (int i = 0; i < adj[u].size(); ++i) {
-            int v = adj[u][i];
+        for (int v : adj[u]) {
             if (!visited[v]) {
-                visited[v] = true;  // mark visited
-                q.push(v);          // enqueue
+                visited[v] = true;
+                q.push(v);
             }
         }
     }
@@ -146,29 +140,31 @@ void bfs_list(const std::vector<int> adj[], int start) {
 
 ---
 
-## Example Usage
+##  Example Usage
 
 ```cpp
 int main() {
-    // Adjacency matrix
+    // Adjacency Matrix
     int matrix[5][5] = {
-        {0,1,1,0,0},
-        {1,0,0,1,0},
-        {1,0,0,1,1},
-        {0,1,1,0,0},
-        {0,0,1,0,0}
+        {0, 1, 1, 0, 0},
+        {1, 0, 0, 1, 0},
+        {1, 0, 0, 1, 1},
+        {0, 1, 1, 0, 0},
+        {0, 0, 1, 0, 0}
     };
+
     std::cout << "BFS (Matrix): ";
     bfs_matrix(matrix, 0);
     std::cout << "\n";
 
-    // Adjacency list
+    // Adjacency List
     std::vector<int> adj[5];
-    adj[0] = {1,2};
-    adj[1] = {0,3};
-    adj[2] = {0,3,4};
-    adj[3] = {1,2};
+    adj[0] = {1, 2};
+    adj[1] = {0, 3};
+    adj[2] = {0, 3, 4};
+    adj[3] = {1, 2};
     adj[4] = {2};
+
     std::cout << "BFS (List): ";
     bfs_list(adj, 0);
     std::cout << std::endl;
@@ -179,12 +175,11 @@ int main() {
 
 ---
 
-## Time Complexity
+##  Time Complexity
 
-* **Matrix**: O(V²)
-* **List**: O(V + E)
+| Representation | Time Complexity     |
+|----------------|---------------------|
+| Matrix         | O(V²)               |
+| List           | O(V + E)            |
 
-Where V = number of vertices, E = number of edges.
-
-```
-```
+Where `V` = number of vertices, and `E` = number of edges.
