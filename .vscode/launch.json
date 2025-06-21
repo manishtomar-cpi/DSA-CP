@@ -5,7 +5,7 @@
       "name": "C++ Debug",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/leetcode/top-150/graph/easy/FindtheTownJudge.exe",
+      "program": "${workspaceFolder}/practice_sheet/graph/easy/DFSofGraph.exe",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}/tree/generic-trees/operations",
