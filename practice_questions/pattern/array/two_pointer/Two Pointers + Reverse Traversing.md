@@ -6,7 +6,7 @@ Used when traversing two sorted arrays from the back (right to left), especially
 
 ## Problems Using This Pattern
 
-### [Merge Sorted Array](../../../leetcode/top-150/array-string/easy/mergeSortedArray.cpp)
+### [Merge Sorted Array - Example Question](../../../leetcode/top-150/array-string/easy/mergeSortedArray.cpp)
 
 - **Topic**: Array
 - **Difficulty**: Easy
